@@ -1,0 +1,13 @@
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\obj\Debug\MythicalLauncher.csproj.AssemblyReference.cache
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\obj\Debug\MythicalLauncher.csproj.SuggestedBindingRedirects.cache
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\obj\Debug\MythicalLauncher.FrmLoading.resources
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\obj\Debug\MythicalLauncher.Properties.Resources.resources
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\obj\Debug\MythicalLauncher.csproj.GenerateResource.cache
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\obj\Debug\MythicalLauncher.csproj.CoreCompileInputs.cache
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\bin\Debug\Guna.UI2.dll
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\bin\Debug\MythicalLauncher.exe.config
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\bin\Debug\MythicalLauncher.exe
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\bin\Debug\MythicalLauncher.pdb
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\obj\Debug\MythicalLauncher.csproj.CopyComplete
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\obj\Debug\MythicalLauncher.exe
+C:\Users\MythicalDoggo\Documents\GitHub\MythicalLauncher\obj\Debug\MythicalLauncher.pdb
