@@ -13,5 +13,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Install MSBuild
+      run: |
+        Invoke-WebRequest -Uri "https://aka.ms/vs/16/release/vs_buildtools.exe" -OutFile "vs_buildtools.exe"
+        Start-Process -FilePath "vs_buildtools.exe" -ArgumentList '--quiet', '--wait', '--norestart', '--nocache', '--installPath', "$env:ProgramFiles (x86)\Microsoft Visual Studio\2017\BuildTools", '--add', 'Microsoft.VisualStudio.Workload.MSBuildTools' -NoNewWindow -Wait
+
     - name: Build with MSBuild
-      run: .\build.cmd
+      run: |
+        $msbuildPath = "$env:ProgramFiles (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe"
+        & $msbuildPath MythicalLauncher.sln /p:Configuration=Release
