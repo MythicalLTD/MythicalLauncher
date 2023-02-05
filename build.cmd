@@ -6,10 +6,7 @@ powershell -Command "Invoke-WebRequest -Uri 'https://aka.ms/vs/16/release/vs_bui
 echo Installing Microsoft Build Tools...
 vs_buildtools.exe --quiet --wait --norestart --nocache --installPath "C:\BuildTools"
 
-echo Adding MSBuild to PATH...
-setx PATH "%PATH%;C:\BuildTools\MSBuild\Current\Bin"
-
 echo Building project...
-msbuild MythicalLauncher.sln /p:Configuration=Release
+"C:\BuildTools\MSBuild\Current\Bin\MSBuild.exe" MythicalLauncher.sln /p:Configuration=Release
 
 echo Build completed.
