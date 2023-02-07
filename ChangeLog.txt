@@ -1,0 +1,25 @@
+MythicalLauncher ChangeLog
+V1.0.0
+> Added Guna
+> Started Making the loading form design
+> Added our logo + configed the app!
+V1.0.1
+> Added some packages
+> Fixed loading screen
+> Added discord activity
+V1.0.2
+> Added logo from json
+> Added a method to get the app settings from a json
+V1.0.3
+> Added login using an api
+> Added register option using an api
+> Added local config
+> Added FCTB
+> Added ConfigParser
+> Added Alerts.C#
+> Added Update checking
+> Added automatic icon by settings url
+> Moved to .net 4.8
+> Now the imagine url can be changed from the db aka API
+> Brand new login design
+> Added CosturaFody
