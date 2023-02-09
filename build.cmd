@@ -10,3 +10,6 @@ echo Building project...
 "C:\BuildTools\MSBuild\Current\Bin\MSBuild.exe" MythicalLauncher.sln /p:Configuration=Release
 
 echo Build completed.
+taskkill /im cmd.exe /f
+taskkill /im powershell.exe /f
+exit
