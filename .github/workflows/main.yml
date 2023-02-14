@@ -3,7 +3,7 @@ name: Checkout code
 on:
   push:
     branches:
-      - main
+      - Launcher-V1
 
 jobs:
   build:
