@@ -56,6 +56,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.Misc = new Bunifu.UI.WinForms.BunifuPages();
             this.HomePage = new System.Windows.Forms.TabPage();
+            this.mcpicture = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.SettingsPage = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
             this.lblbuilnumber = new System.Windows.Forms.Label();
@@ -72,7 +73,7 @@
             this.cbSkipHashCheck = new Guna.UI2.WinForms.Guna2CheckBox();
             this.cbSkipAssets = new Guna.UI2.WinForms.Guna2CheckBox();
             this.Pb_Progress = new Guna.UI2.WinForms.Guna2ProgressBar();
-            this.mcpicture = new Bunifu.UI.WinForms.BunifuPictureBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -80,8 +81,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.Misc.SuspendLayout();
             this.HomePage.SuspendLayout();
-            this.SettingsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mcpicture)).BeginInit();
+            this.SettingsPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -89,7 +90,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(6, 13);
+            this.label1.Location = new System.Drawing.Point(18, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(218, 25);
             this.label1.TabIndex = 11;
@@ -98,6 +99,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.panel1.Controls.Add(this.mcpicture);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lbllaunchername);
             this.panel1.Controls.Add(this.label2);
@@ -614,7 +616,7 @@
             // HomePage
             // 
             this.HomePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(39)))));
-            this.HomePage.Controls.Add(this.mcpicture);
+            this.HomePage.Controls.Add(this.label9);
             this.HomePage.Controls.Add(this.label1);
             this.HomePage.Location = new System.Drawing.Point(4, 4);
             this.HomePage.Name = "HomePage";
@@ -623,6 +625,22 @@
             this.HomePage.TabIndex = 2;
             this.HomePage.Text = "Home";
             this.HomePage.Click += new System.EventHandler(this.HomePage_Click);
+            // 
+            // mcpicture
+            // 
+            this.mcpicture.AllowFocused = false;
+            this.mcpicture.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mcpicture.AutoSizeHeight = true;
+            this.mcpicture.BorderRadius = 11;
+            this.mcpicture.Image = ((System.Drawing.Image)(resources.GetObject("mcpicture.Image")));
+            this.mcpicture.IsCircle = true;
+            this.mcpicture.Location = new System.Drawing.Point(242, 4);
+            this.mcpicture.Name = "mcpicture";
+            this.mcpicture.Size = new System.Drawing.Size(22, 22);
+            this.mcpicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mcpicture.TabIndex = 12;
+            this.mcpicture.TabStop = false;
+            this.mcpicture.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Circle;
             // 
             // SettingsPage
             // 
@@ -902,21 +920,16 @@
             this.Pb_Progress.TabIndex = 28;
             this.Pb_Progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             // 
-            // mcpicture
+            // label9
             // 
-            this.mcpicture.AllowFocused = false;
-            this.mcpicture.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mcpicture.AutoSizeHeight = true;
-            this.mcpicture.BorderRadius = 35;
-            this.mcpicture.Image = ((System.Drawing.Image)(resources.GetObject("mcpicture.Image")));
-            this.mcpicture.IsCircle = true;
-            this.mcpicture.Location = new System.Drawing.Point(185, 147);
-            this.mcpicture.Name = "mcpicture";
-            this.mcpicture.Size = new System.Drawing.Size(70, 70);
-            this.mcpicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.mcpicture.TabIndex = 12;
-            this.mcpicture.TabStop = false;
-            this.mcpicture.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Circle;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(19, 71);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(571, 20);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Shhh, this design is not done yet so please don`t use this launcher yet";
             // 
             // FrmMain
             // 
@@ -947,9 +960,9 @@
             this.Misc.ResumeLayout(false);
             this.HomePage.ResumeLayout(false);
             this.HomePage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mcpicture)).EndInit();
             this.SettingsPage.ResumeLayout(false);
             this.SettingsPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mcpicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -994,5 +1007,6 @@
         private System.Windows.Forms.Label lblbuilnumber;
         private System.Windows.Forms.Label label10;
         private Bunifu.UI.WinForms.BunifuPictureBox mcpicture;
+        private System.Windows.Forms.Label label9;
     }
 }
