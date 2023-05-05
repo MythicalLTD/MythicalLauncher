@@ -103,7 +103,7 @@ namespace MythicalLauncher
             {
                 var appcfg = new ConfigParser(appConfig);
                 var r_key = appcfg.GetValue("RemoteLauncher", "key");
-                string webURL = r_key + "/api/mythicallauncher/login/register.php?email=" + email.Text + "&usrn=" + username.Text + "&pass=" + password.Text;
+                string webURL = r_key + "/api/mythicallauncher/auth/register.php?email=" + email.Text + "&usrn=" + username.Text + "&pass=" + password.Text;
                 WebClient wc = new WebClient();
                 wc.Headers.Add("user-agent", "Only a Header!");
                 byte[] rawByteArray = wc.DownloadData(webURL);

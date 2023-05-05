@@ -55,13 +55,13 @@ namespace MythicalLauncher
             };
 
             client.Initialize();
-
+            // TODO: ADDD CUSTOM RPC VIA API
             DiscordRPC.Button btns = new DiscordRPC.Button();
             DiscordRPC.Button btns2 = new DiscordRPC.Button();
             btns.Label = "Github";
             btns.Url = "https://github.com/MythicalLTD/MythicalLauncher";
-            btns2.Label = "Free Hosting";
-            btns2.Url = "https://my.mythicalnodes.xyz";
+            //btns2.Label = "";
+            //btns2.Url = "https://my.mythicalnodes.xyz";
 
             client.SetPresence(new RichPresence()
             {

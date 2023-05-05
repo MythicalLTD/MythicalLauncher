@@ -65,7 +65,7 @@ namespace MythicalLauncher
                 email.Text = re_email;
                 password.Text = re_pass;
                 var r_key = cfg.GetValue("RemoteLauncher", "key");
-                string webURL = r_key + "/api/mythicallauncher/login/login.php?email=" + email.Text + "&pass=" + password.Text;
+                string webURL = r_key + "/api/mythicallauncher/auth/login.php?email=" + email.Text + "&pass=" + password.Text;
                 WebClient wc = new WebClient();
                 wc.Headers.Add("user-agent", "Only a Header!");
                 byte[] rawByteArray = wc.DownloadData(webURL);
@@ -157,7 +157,7 @@ namespace MythicalLauncher
             {
                 var cfg = new ConfigParser(appConfig);
                 var r_key = cfg.GetValue("RemoteLauncher", "key");
-                string webURL = r_key + "/api/mythicallauncher/login/login.php?email=" + email.Text + "&pass=" + password.Text;
+                string webURL = r_key + "/api/mythicallauncher/auth/login.php?email=" + email.Text + "&pass=" + password.Text;
                 WebClient wc = new WebClient();
                 wc.Headers.Add("user-agent", "Only a Header!");
                 byte[] rawByteArray = wc.DownloadData(webURL);
@@ -185,7 +185,7 @@ namespace MythicalLauncher
             cfg.Save();
             Alert("Login Success", FrmAlert.enmType.Succes);
             var r_key = cfg.GetValue("RemoteLauncher", "key");
-            string webURL = r_key+ "/api/mythicallauncher/user/getusername.php?email=" + email.Text + "&pass=" + password.Text;
+            string webURL = r_key+ "/api/mythicallauncher/user/info.php?email=" + email.Text + "&pass=" + password.Text+"&get=username";
             WebClient wc = new WebClient();
             wc.Headers.Add("user-agent", "Only a Header!");
             byte[] rawByteArray = wc.DownloadData(webURL);

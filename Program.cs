@@ -11,7 +11,7 @@ namespace MythicalLauncher
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        public static string version = "1.0.1";
+        public static string version = "1.0.2";
 
         [STAThread]
         static void Main()
