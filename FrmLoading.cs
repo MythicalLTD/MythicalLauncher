@@ -27,6 +27,13 @@ namespace MythicalLauncher
         public static string applogo;
         public static string applang;
         public static string version;
+        public static string enable_discordrpc;
+        public static string discord_id;
+        public static string discordrpc_button1_text;
+        public static string discordrpc_button1_url;
+        public static string discordrpc_button2_text;
+        public static string discordrpc_button2_url;
+        public static string discordrpc_description;
 
         public static JObject GetDataFromUrl(string url)
         {
@@ -40,37 +47,37 @@ namespace MythicalLauncher
 
         void InitializeRPC()
         {
-            client = new DiscordRpcClient("1038164770244788254");
+            Console.WriteLine("[{0:HH:mm:ss}] [DISCORD RPC] Please wait while we load RPC", DateTime.Now);
+            client = new DiscordRpcClient(discord_id);
 
             client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
 
             client.OnReady += (sender, e) =>
             {
-                Console.WriteLine("Received Ready from user {0}", e.User.Username);
+                Console.WriteLine("[{0:HH:mm:ss}] [DISCORD RPC] Received Ready from user {0}", e.User.Username, DateTime.Now);
             };
 
             client.OnPresenceUpdate += (sender, e) =>
             {
-                Console.WriteLine("Received Update! {0}", e.Presence);
+                Console.WriteLine("[{0:HH:mm:ss}] [DISCORD RPC] Received Update! {0}", e.Presence, DateTime.Now);
             };
 
             client.Initialize();
-            // TODO: ADDD CUSTOM RPC VIA API
             DiscordRPC.Button btns = new DiscordRPC.Button();
             DiscordRPC.Button btns2 = new DiscordRPC.Button();
-            btns.Label = "Github";
-            btns.Url = "https://github.com/MythicalLTD/MythicalLauncher";
-            //btns2.Label = "";
-            //btns2.Url = "https://my.mythicalnodes.xyz";
+            btns.Label = discordrpc_button1_text;
+            btns.Url = discordrpc_button1_url;
+            btns2.Label = discordrpc_button2_text;
+            btns2.Url = discordrpc_button2_url;
 
             client.SetPresence(new RichPresence()
             {
-                Details = "MythicalSystems",
-                State = "Free custom minecraft launcher!",
+                Details = "Playing on "+appname,
+                State = discordrpc_description,
                 Assets = new Assets()
                 {
                     LargeImageKey = "logo",
-                    LargeImageText = "MythicalSystems",
+                    LargeImageText = appname,
                 },
                 Buttons = new DiscordRPC.Button[]
                 {
@@ -78,6 +85,9 @@ namespace MythicalLauncher
                     btns2
                 },
             });
+ 
+            Console.WriteLine("[{0:HH:mm:ss}] Discord RPC was successfully loaded", DateTime.Now);
+
         }
 
         private void lblexit_Click(object sender, EventArgs e)
@@ -86,10 +96,13 @@ namespace MythicalLauncher
         }
         private void GetSettings()
         {
+            Console.WriteLine("[{0:HH:mm:ss}] [SETTINGS] We are trying to load the server settings please wait", DateTime.Now);
             var appcfg = new ConfigParser(appConfig);
             var r_key = appcfg.GetValue("RemoteLauncher", "key");
             if (r_key == "")
             {
+                Console.WriteLine("[{0:HH:mm:ss}] [SETTINGS] There was a problem while connecting", DateTime.Now);
+                Console.WriteLine("[{0:HH:mm:ss}] [SETTINGS] No server was specified, please make sure to specify it into the config file", DateTime.Now);
                 Alert("Please specify a server for the launcher to connect", FrmAlert.enmType.Error);
             }
             else
@@ -97,18 +110,27 @@ namespace MythicalLauncher
                 string jsonFilePath = r_key+ "/api/mythicallauncher/settings/getconfig.php";
                 using (var client = new WebClient())
                 {
+                    Console.WriteLine("[{0:HH:mm:ss}] [SETTINGS] We are downloading the server side settings", DateTime.Now);
                     string json = client.DownloadString(jsonFilePath);
                     dynamic data = JsonConvert.DeserializeObject(json);
-                    string version = data.Version;
-                    string appname = data.appName;
-                    string applogo = data.appLogo;
-                    string applang = data.appLang;
+                    Console.WriteLine("[{0:HH:mm:ss}] [SETTINGS] Done downloading now please wait while we save the server settings on your local pc",DateTime.Now);
+                    version = data.Version;
+                    appname = data.appName;
+                    applogo = data.appLogo;
+                    applang = data.appLang;
                     string appbg = data.appBg;
                     string appcolour = data.appMainColour;
                     string appdiscord = data.appDiscord;
                     string appvote = data.appVote;
                     string appweb = data.appWebsite;
                     string appstore = data.appStore;
+                    enable_discordrpc = data.enable_discordrpc;
+                    discord_id = data.discord_id;
+                    discordrpc_button1_text = data.discordrpc_button1_text;
+                    discordrpc_button1_url = data.discordrpc_button1_url;
+                    discordrpc_button2_text = data.discordrpc_button2_text;
+                    discordrpc_button2_url = data.discordrpc_button2_url;
+                    discordrpc_description = data.discordrpc_description;
                     lblver.Text = "V" +version;
                     appcfg.SetValue("RemoteLauncher", "Version", version);
                     appcfg.SetValue("RemoteLauncher", "appName", appname);
@@ -120,13 +142,22 @@ namespace MythicalLauncher
                     appcfg.SetValue("RemoteLauncher", "appVote", appvote);
                     appcfg.SetValue("RemoteLauncher", "appStore", appstore);
                     appcfg.SetValue("RemoteLauncher", "appLang", applang);
+                    appcfg.SetValue("RemoteLauncher", "enable_discordrpc", enable_discordrpc);
+                    appcfg.SetValue("RemoteLauncher", "discord_id", discord_id);
+                    appcfg.SetValue("RemoteLauncher", "discordrpc_button1_text", discordrpc_button1_text);
+                    appcfg.SetValue("RemoteLauncher", "discordrpc_button1_url", discordrpc_button1_url);
+                    appcfg.SetValue("RemoteLauncher", "discordrpc_button2_text", discordrpc_button2_text);
+                    appcfg.SetValue("RemoteLauncher", "discordrpc_button2_url", discordrpc_button2_url);
+                    appcfg.SetValue("RemoteLauncher", "discordrpc_description", discordrpc_description);
                     appcfg.Save();
                     loader.Color = ColorTranslator.FromHtml(appcolour);
+                    Console.WriteLine("[{0:HH:mm:ss}] [SETTINGS] Done", DateTime.Now);
                 }
             }
         }
         private Boolean checkUpdate()
         {
+            Console.WriteLine("[{0:HH:mm:ss}] [UPDATER] Please wait while we check for updates",DateTime.Now);
             Boolean versionStatu;
             try
             {
@@ -147,6 +178,7 @@ namespace MythicalLauncher
 
             if (checkUpdate())
             {
+                Console.WriteLine("[{0:HH:mm:ss}] [UPDATER] Update found!",DateTime.Now);
                 DialogResult dr = MessageBox.Show("New update is available. \n\r Would you like to install it now?", "Update found", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (dr == DialogResult.Yes)
                 {
@@ -198,14 +230,31 @@ namespace MythicalLauncher
         }
         private async void FrmLoading_Load(object sender, EventArgs e)
         {
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Please wait while we load all plugins", DateTime.Now);
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Loading updater..", DateTime.Now);
             askUpdate();
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Done..", DateTime.Now);
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Loading settings..", DateTime.Now);
             GetSettings();
-            InitializeRPC();
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Done..", DateTime.Now);
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Loading Discord RPC..", DateTime.Now);
+            if (enable_discordrpc == "true")
+            {
+                InitializeRPC();
+            }
+            else
+            {
+                Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] We disabled Discord RPC..", DateTime.Now);
+            }
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Please wait while we display the server imagine", DateTime.Now);
             DisplayImage();
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Done..", DateTime.Now);
             lblver.Text = "V"+File.ReadAllText(versionfile);
             await Task.Delay(5000);
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Loading login form", DateTime.Now);
             FrmLogin x = new FrmLogin();
             x.Show();
+            Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Done..", DateTime.Now);
             this.Hide();
 
         }
