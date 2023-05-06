@@ -82,7 +82,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Launcher";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.FrmAlert_Load);
             ((System.ComponentModel.ISupportInitialize)(this.icontype)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

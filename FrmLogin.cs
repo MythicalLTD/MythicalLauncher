@@ -1,7 +1,4 @@
 ﻿using CmlLib.Core.Auth;
-using DiscordRPC;
-using DiscordRPC.Logging;
-using Microsoft.VisualBasic.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Salaros.Configuration;
@@ -9,9 +6,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Security.Policy;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MythicalLauncher
@@ -19,7 +14,12 @@ namespace MythicalLauncher
     public partial class FrmLogin : Form
     {
         MLogin login = new MLogin();
-        public static string username;
+  
+        public static string l_username;
+        public static string l_email;
+        public static string l_banned;
+        public static string l_admin;
+        public static string l_role;
         private string appConfig = Application.StartupPath + @"\settings.ini";
 
         public FrmLogin()
@@ -42,14 +42,11 @@ namespace MythicalLauncher
             mainForm.FormClosed += (s, e) => this.Close();
             mainForm.Show();
             this.Close();
-            
+
         }
         void LoadSettings()
         {
-            var cfg = new ConfigParser(appConfig);
-            var appName = cfg.GetValue("RemoteLauncher", "appName");
-            //lbllaunchername.Text = appName + " | Login";
-            lbllchname.Text = appName;
+            lbllchname.Text = FrmLoading.appname;
         }
         void RememberMe()
         {
@@ -58,7 +55,8 @@ namespace MythicalLauncher
             var re_pass = cfg.GetValue("ACCOUNT", "pass");
             if (re_email == "" || re_pass == "")
             {
-                Alert("Cant get your last account info!",FrmAlert.enmType.Warning);
+                Alert("Can't get your last account info!", FrmAlert.enmType.Warning);
+                Console.WriteLine("[{0:HH:mm:ss}] [AUTH] Can't get your last account info", DateTime.Now);
             }
             else
             {
@@ -72,13 +70,23 @@ namespace MythicalLauncher
                 string webContent = Encoding.UTF8.GetString(rawByteArray);
 
                 if (webContent.ToUpper().Contains("LOGIN_SUCCES"))
-                    getUsername();
-                   
+                    getUserData();
+
                 else if (webContent.ToUpper().Contains("LOGIN_FAILD"))
-                    Alert("Invalid email or password", FrmAlert.enmType.Error);
+                    InvalidLogin();
                 else if (webContent.ToUpper().Contains("ERROR_BANNED"))
-                    Alert("Your are banned from using our launcher!", FrmAlert.enmType.Warning);
+                    BannedLogin();
             }
+        }
+        void BannedLogin()
+        {
+            Alert("Your are banned from using our launcher!", FrmAlert.enmType.Warning);
+            Console.WriteLine("[{0:HH:mm:ss}] [AUTH] [{0:HH:mm:ss}]", DateTime.Now);
+        }
+        void InvalidLogin()
+        {
+            Alert("Invalid email or password", FrmAlert.enmType.Error);
+            Console.WriteLine("[{0:HH:mm:ss}] [AUTH] The email or the password is invalid", DateTime.Now);
         }
         private void DisplayImage()
         {
@@ -132,22 +140,9 @@ namespace MythicalLauncher
             RememberMe();
             LoadSettings();
             DisplayImage();
-            
-        }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
-
-        private void register_Click(object sender, EventArgs e)
-        {
-            FrmRegister x = new FrmRegister();
-            x.Show();
-            this.Hide();
-        }
-
-        private void registerbutton_Click(object sender, EventArgs e)
+        private void loginbutton_Click(object sender, EventArgs e)
         {
             if (email.Text == "" || password.Text == "")
             {
@@ -164,40 +159,42 @@ namespace MythicalLauncher
                 string webContent = Encoding.UTF8.GetString(rawByteArray);
 
                 if (webContent.ToUpper().Contains("LOGIN_SUCCES"))
-                    getUsername();
+                    getUserData();
                 else if (webContent.ToUpper().Contains("LOGIN_FAILD"))
-                    Alert("Invalid email or password", FrmAlert.enmType.Error);
+                    InvalidLogin();
                 else if (webContent.ToUpper().Contains("ERROR_BANNED"))
-                    Alert("Your are banned from using our launcher!", FrmAlert.enmType.Warning);
+                    BannedLogin();
             }
-            
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-        void getUsername()
-        {
-            var cfg = new ConfigParser(appConfig);
-            cfg.SetValue("ACCOUNT", "email", email.Text);
-            cfg.SetValue("ACCOUNT", "pass", password.Text);
-            cfg.Save();
-            Alert("Login Success", FrmAlert.enmType.Succes);
-            var r_key = cfg.GetValue("RemoteLauncher", "key");
-            string webURL = r_key+ "/api/mythicallauncher/user/info.php?email=" + email.Text + "&pass=" + password.Text+"&get=username";
-            WebClient wc = new WebClient();
-            wc.Headers.Add("user-agent", "Only a Header!");
-            byte[] rawByteArray = wc.DownloadData(webURL);
-            string webContent = Encoding.UTF8.GetString(rawByteArray);
-            username = webContent;
-            UpdateSession(MSession.GetOfflineSession(username));
-            
 
         }
-        private void label3_Click(object sender, EventArgs e)
+        void getUserData()
         {
-            Application.Exit();
+            Console.WriteLine("[{0:HH:mm:ss}] [USERDATA] Please wait while we download the user data!");
+            try
+            {
+                var appcfg = new ConfigParser(appConfig);
+                var r_key = appcfg.GetValue("RemoteLauncher", "key");
+                string jsonFilePath = r_key + "/api/mythicallauncher/user/info.php?email=" + email.Text + "&pass=" + password.Text + "&get=username";
+                using (var client = new WebClient())
+                {
+                    string json = client.DownloadString(jsonFilePath);
+                    dynamic udata = JsonConvert.DeserializeObject(json);
+                    l_username = udata.Username;
+                    l_email = udata.Email;
+                    l_banned = udata.Banned;
+                    l_admin = udata.Admin;
+                    l_role = udata.Role;
+                    appcfg.SetValue("ACCOUNT", "email", email.Text);
+                    appcfg.SetValue("ACCOUNT", "pass", password.Text);
+                    appcfg.Save();
+                    Alert("Login Success", FrmAlert.enmType.Succes);
+                    UpdateSession(MSession.GetOfflineSession(l_username));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[{0:HH:mm:ss}] [USERDATA] Something wen't wrong" + ex);
+            }
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -218,38 +215,25 @@ namespace MythicalLauncher
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            var cfg = new ConfigParser(appConfig);
-            var appWebsite = cfg.GetValue("RemoteLauncher", "appWebsite");
-            System.Diagnostics.Process.Start(appWebsite);
+            System.Diagnostics.Process.Start(FrmLoading.appweb);
 
         }
 
         private void lblstore_Click(object sender, EventArgs e)
         {
-            var cfg = new ConfigParser(appConfig);
-            var appStore = cfg.GetValue("RemoteLauncher", "appStore");
-            System.Diagnostics.Process.Start(appStore);
+            System.Diagnostics.Process.Start(FrmLoading.appstore);
         }
 
         private void lblvote_Click(object sender, EventArgs e)
         {
-            var cfg = new ConfigParser(appConfig);
-            var appVote = cfg.GetValue("RemoteLauncher", "appVote");
-            System.Diagnostics.Process.Start(appVote);
+            System.Diagnostics.Process.Start(FrmLoading.appvote);
         }
 
         private void lbldiscord_Click(object sender, EventArgs e)
         {
-            var cfg = new ConfigParser(appConfig);
-            var appDiscord = cfg.GetValue("RemoteLauncher", "appDiscord");
-            System.Diagnostics.Process.Start(appDiscord);
+            System.Diagnostics.Process.Start(FrmLoading.appdiscord);
         }
     }
 }

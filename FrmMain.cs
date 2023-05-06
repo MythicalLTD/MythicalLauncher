@@ -1,5 +1,4 @@
 ﻿using CmlLib.Core;
-using CmlLib.Utils;
 using CmlLib.Core.Auth;
 using CmlLib.Core.Downloader;
 using Newtonsoft.Json.Linq;
@@ -13,7 +12,6 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CmlLib.Core.Version;
 
 namespace MythicalLauncher
 {
@@ -60,19 +58,26 @@ namespace MythicalLauncher
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            string avatarUrl = $"https://minotar.net/avatar/{FrmLogin.username}";
+            string avatarUrl = $"https://minotar.net/avatar/{FrmLogin.l_username}";
 
             using (WebClient client = new WebClient())
             {
                 byte[] imageBytes = client.DownloadData(avatarUrl);
                 mcpicture.Image = System.Drawing.Image.FromStream(new System.IO.MemoryStream(imageBytes));
             }
-            lblver.Text = "Version: " + File.ReadAllText(versionfile);
+            if (Program.debugmdoe == "true")
+            {
+                lblver.Text = "Version: " + File.ReadAllText(versionfile) + " (DEBUG MODE)";
+            }
+            else
+            {
+                lblver.Text = "Version: " + File.ReadAllText(versionfile);
+            }
             this.WindowState = FormWindowState.Normal;
-            label1.Text = "Welcome, " + FrmLogin.username;
+            label1.Text = "Welcome, " + FrmLogin.l_username;
             lblbuilnumber.Text = "Build number: " + File.ReadAllText(buildfile);
             RememberMe();
-            DisplayImage(); 
+            DisplayImage();
             LoadSettings();
         }
 
@@ -124,11 +129,8 @@ namespace MythicalLauncher
         }
         void LoadSettings()
         {
-            var cfg = new ConfigParser(appConfig);
-            var appName = cfg.GetValue("RemoteLauncher", "appName");
-            var appVer = cfg.GetValue("RemoteLauncher", "Version");
-            lbllaunchername.Text = appName + " | Home";
-            lblver.Text = "Version: "+appVer;
+            lbllaunchername.Text = FrmLoading.version + " | Home";
+            lblver.Text = "Version: " + FrmLoading.version;
 
         }
         private async void FrmMain_Shown(object sender, EventArgs e)
@@ -139,7 +141,7 @@ namespace MythicalLauncher
         }
         private async Task initializeLauncher(MinecraftPath path)
         {
-            this.gamePath = path;    
+            this.gamePath = path;
             launcher = new CMLauncher(path);
             launcher.FileChanged += Launcher_FileChanged;
             launcher.ProgressChanged += Launcher_ProgressChanged;
@@ -188,8 +190,6 @@ namespace MythicalLauncher
                 return;
             }
 
-            setUIEnabled(false);
-
             try
             {
 
@@ -197,7 +197,14 @@ namespace MythicalLauncher
                 {
                     MaximumRamMb = int.Parse(TxtXmx.Text),
                     Session = this.session,
+                    GameLauncherName = FrmLoading.appname,
+
                 };
+
+                if (FrmLoading.enable_auto_joiner == "true")
+                {
+                    launchOption.ServerIp = FrmLoading.auto_joiner_ip;
+                }
 
                 if (!useMJava)
                     launchOption.JavaPath = javaPath;
@@ -225,7 +232,7 @@ namespace MythicalLauncher
             }
             catch (FormatException fex)
             {
-                MessageBox.Show("Failed to create MLaunchOption\n\n" + fex);
+                MessageBox.Show("Failed to create Launch Options\n\n" + fex);
             }
             catch (MDownloadFileException mex)
             {
@@ -247,52 +254,26 @@ namespace MythicalLauncher
             finally
             {
                 this.WindowState = FormWindowState.Minimized;
-                setUIEnabled(true);
             }
 
         }
-        private void setUIEnabled(bool value)
-        {
-            //gMojangLogin.Enabled = value;
-            //guna2GroupBox2.Enabled = value;
-        }
+
         private void StartProcess(Process process)
         {
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardError = true;
             process.StartInfo.RedirectStandardOutput = true;
             process.EnableRaisingEvents = true;
-            process.ErrorDataReceived += Process_ErrorDataReceived;
-            process.OutputDataReceived += Process_OutputDataReceived;
 
             process.Start();
             process.BeginErrorReadLine();
             process.BeginOutputReadLine();
         }
 
-        private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            output(e.Data);
-        }
-
-        private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            output(e.Data);
-        }
-
-        void output(string msg)
-        {
-            //GameLog.AddLog(msg);
-        }
 
         private void btnSetLastVersion_Click(object sender, EventArgs e)
         {
             cbVersion.Text = launcher.Versions.LatestReleaseVersion?.Name;
-        }
-
-        private async void btnRefreshVersion_Click(object sender, EventArgs e)
-        {
-            await refreshVersions(null);
         }
 
         private async Task refreshVersions(string showVersion)
@@ -324,16 +305,6 @@ namespace MythicalLauncher
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void homeBtn_Click(object sender, EventArgs e)
-        {
-            Misc.SetPage(HomePage);
-        }
-
-        private void settingsBtn_Click(object sender, EventArgs e)
-        {
-            Misc.SetPage(SettingsPage);
-        }
-
 
         private void txtXms_TextChanged(object sender, EventArgs e)
         {
@@ -354,39 +325,27 @@ namespace MythicalLauncher
             Misc.SetPage(SettingsPage);
         }
 
-        private void guna2CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2CheckBox2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void bunifuButton26_Click(object sender, EventArgs e)
         {
             Misc.SetPage(HomePage);
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private async void pictureBox5_Click(object sender, EventArgs e)
         {
-
+            await refreshVersions(null);
         }
 
-        private void HomePage_Click(object sender, EventArgs e)
+        private async void label4_Click(object sender, EventArgs e)
         {
-
+            await refreshVersions(null);
         }
 
-        private void SettingsPage_Click(object sender, EventArgs e)
-        {
 
+        private void label10_Click(object sender, EventArgs e)
+        {
+            FrmChangeLog x = new FrmChangeLog();
+            x.Show();
+            this.Hide();
         }
     }
 }

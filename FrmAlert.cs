@@ -14,10 +14,6 @@ namespace MythicalLauncher
             InitializeComponent();
         }
 
-        private void FrmAlert_Load(object sender, EventArgs e)
-        {
-
-        }
         public enum enmAction
         {
             wait,

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MythicalLauncher
@@ -20,7 +17,7 @@ namespace MythicalLauncher
         static extern bool AttachConsole(int dwProcessId);
         private const int ATTACH_PARENT_PROCESS = -1;
 
-        
+
 
         [STAThread]
         static void Main(string[] args)
@@ -35,7 +32,7 @@ namespace MythicalLauncher
                 Console.Title = "MythicalLauncher | CLI";
                 Console.WriteLine("@echo off");
                 Console.Clear();
-                Console.WriteLine("MythicalLauncher version "+version+" by MythicalSystems");
+                Console.WriteLine("MythicalLauncher version " + version + " by MythicalSystems");
                 Console.WriteLine("");
                 return;
             }
@@ -50,7 +47,15 @@ namespace MythicalLauncher
                 Console.WriteLine("DEBUG MODE ACTIVE");
                 Console.WriteLine("Please do not use this mode if you are not a developer");
                 debugmdoe = "true";
-                Application.Run(new FrmLoading());
+                try
+                {
+                    Application.Run(new FrmLoading());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                }
                 return;
             }
             if (args.Contains("-help"))
@@ -66,7 +71,7 @@ namespace MythicalLauncher
                 Console.WriteLine("-help | Shows this promot");
                 Console.WriteLine("-version | Shows the version of the application");
                 Console.WriteLine("-debug | Shows the debug console for problems");
-                Console.WriteLine("-verify | SOON");
+                Console.WriteLine("-build | SOON");
                 Console.WriteLine("");
                 Console.WriteLine("Press any key to continue!");
                 return;

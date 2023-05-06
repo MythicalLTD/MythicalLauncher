@@ -1,6 +1,6 @@
-*.bat
-*.cmd
-
-bin/
+bin/Debug
+obj/
 .vs/
 .obj
+build.bat
+open.bat

@@ -23,11 +23,6 @@ namespace MythicalLauncher
             frm.showAlert(msg, type);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         public static JObject GetDataFromUrl(string url)
         {
             using (var client = new WebClient())
@@ -83,9 +78,8 @@ namespace MythicalLauncher
         }
         void LoadSettings()
         {
-            var cfg = new ConfigParser(appConfig);
-            var appName = cfg.GetValue("RemoteLauncher", "appName");
-            lbllchname.Text = appName;
+
+            lbllchname.Text = FrmLoading.appname;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -119,7 +113,7 @@ namespace MythicalLauncher
                 x.Show();
                 this.Hide();
             }
-            
+
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -137,30 +131,22 @@ namespace MythicalLauncher
 
         private void lblweb_Click(object sender, EventArgs e)
         {
-            var cfg = new ConfigParser(appConfig);
-            var appWebsite = cfg.GetValue("RemoteLauncher", "appWebsite");
-            System.Diagnostics.Process.Start(appWebsite);
+            System.Diagnostics.Process.Start(FrmLoading.appweb);
         }
 
         private void lbldiscord_Click_1(object sender, EventArgs e)
         {
-            var cfg = new ConfigParser(appConfig);
-            var appDiscord = cfg.GetValue("RemoteLauncher", "appDiscord");
-            System.Diagnostics.Process.Start(appDiscord);
+            System.Diagnostics.Process.Start(FrmLoading.appdiscord);
         }
 
         private void lblstore_Click_1(object sender, EventArgs e)
         {
-            var cfg = new ConfigParser(appConfig);
-            var appStore = cfg.GetValue("RemoteLauncher", "appStore");
-            System.Diagnostics.Process.Start(appStore);
+            System.Diagnostics.Process.Start(FrmLoading.appstore);
         }
 
         private void lblvote_Click_1(object sender, EventArgs e)
         {
-            var cfg = new ConfigParser(appConfig);
-            var appVote = cfg.GetValue("RemoteLauncher", "appVote");
-            System.Diagnostics.Process.Start(appVote);
+            System.Diagnostics.Process.Start(FrmLoading.appvote);
         }
     }
 }
