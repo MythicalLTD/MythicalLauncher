@@ -26,16 +26,6 @@ namespace MythicalLauncher
         {
             InitializeComponent();
         }
-        public static JObject GetDataFromUrl(string url)
-        {
-            using (var client = new WebClient())
-            {
-                string jsonText = client.DownloadString(url);
-                JObject jsonObject = JObject.Parse(jsonText);
-                return jsonObject;
-            }
-        }
-
         private void UpdateSession(MSession session)
         {
             var mainForm = new FrmMain(session);
@@ -90,14 +80,9 @@ namespace MythicalLauncher
         }
         private void DisplayImage()
         {
-            var appcfg = new ConfigParser(appConfig);
-            var r_key = appcfg.GetValue("RemoteLauncher", "key");
-            string jsonFilePath = r_key + "/api/mythicallauncher/settings/getconfig.php";
-            JObject data = GetDataFromUrl(jsonFilePath);
-            string imageUrl = (string)data["appLogo"];
             using (WebClient webClient = new WebClient())
             {
-                byte[] imageBytes = webClient.DownloadData(imageUrl);
+                byte[] imageBytes = webClient.DownloadData(FrmLoading.applogo);
                 using (MemoryStream memoryStream = new MemoryStream(imageBytes))
                 {
                     pictureBox1.Image = Image.FromStream(memoryStream);
@@ -105,25 +90,23 @@ namespace MythicalLauncher
             }
             using (WebClient webClient = new WebClient())
             {
-                byte[] iconBytes = webClient.DownloadData(imageUrl);
+                byte[] iconBytes = webClient.DownloadData(FrmLoading.applogo);
                 using (MemoryStream ms = new MemoryStream(iconBytes))
                 {
                     Bitmap bitmap = (Bitmap)Image.FromStream(ms);
                     this.Icon = Icon.FromHandle(bitmap.GetHicon());
                 }
             }
-            string bgimageURL = (string)data["appBg"];
             using (WebClient backWebClient = new WebClient())
             {
-                byte[] bgimageBytes = backWebClient.DownloadData(bgimageURL);
+                byte[] bgimageBytes = backWebClient.DownloadData(FrmLoading.appbg);
                 using (MemoryStream bgmemoryStream = new MemoryStream(bgimageBytes))
                 {
                     this.BackgroundImage = Image.FromStream(bgmemoryStream);
                 }
             }
-            string appcolour = (string)data["appMainColour"];
-            loginbutton.FillColor = ColorTranslator.FromHtml(appcolour);
-            loginbutton.FillColor2 = ColorTranslator.FromHtml(appcolour);
+            loginbutton.FillColor = ColorTranslator.FromHtml(FrmLoading.appcolour);
+            loginbutton.FillColor2 = ColorTranslator.FromHtml(FrmLoading.appcolour);
 
         }
 
@@ -169,7 +152,7 @@ namespace MythicalLauncher
         }
         void getUserData()
         {
-            Console.WriteLine("[{0:HH:mm:ss}] [USERDATA] Please wait while we download the user data!");
+            Console.WriteLine("[{0:HH:mm:ss}] [USERDATA] Please wait while we download the user data!",DateTime.Now);
             try
             {
                 var appcfg = new ConfigParser(appConfig);

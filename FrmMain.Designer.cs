@@ -52,37 +52,39 @@
             this.bunifuButton25 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.bunifuButton26 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.Pb_Progress = new Guna.UI2.WinForms.Guna2ProgressBar();
-            this.SettingsPage = new System.Windows.Forms.TabPage();
-            this.cbSkipAssets = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.cbSkipHashCheck = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.rbParallelDownload = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.TxtXmx = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtXms = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.guna2CheckBox2 = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblver = new System.Windows.Forms.Label();
-            this.lblbuilnumber = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.HomePage = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.Misc = new Bunifu.UI.WinForms.BunifuPages();
-            this.maxRamLabel = new Bunifu.UI.WinForms.BunifuLabel();
+            this.HomePage = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.announcementDescriptionTextBox = new System.Windows.Forms.RichTextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.lblbuilnumber = new System.Windows.Forms.Label();
+            this.lblver = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.guna2CheckBox2 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtXms = new Guna.UI2.WinForms.Guna2TextBox();
+            this.TxtXmx = new Guna.UI2.WinForms.Guna2TextBox();
             this.minRamLabel = new Bunifu.UI.WinForms.BunifuLabel();
+            this.maxRamLabel = new Bunifu.UI.WinForms.BunifuLabel();
+            this.rbParallelDownload = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.cbSkipHashCheck = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.cbSkipAssets = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.Pb_Progress = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.cbFullscreen = new Guna.UI2.WinForms.Guna2CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mcpicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            this.SettingsPage.SuspendLayout();
-            this.HomePage.SuspendLayout();
             this.Misc.SuspendLayout();
+            this.HomePage.SuspendLayout();
+            this.SettingsPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -107,7 +109,7 @@
             this.mcpicture.BorderRadius = 11;
             this.mcpicture.Image = ((System.Drawing.Image)(resources.GetObject("mcpicture.Image")));
             this.mcpicture.IsCircle = true;
-            this.mcpicture.Location = new System.Drawing.Point(242, 4);
+            this.mcpicture.Location = new System.Drawing.Point(885, 4);
             this.mcpicture.Name = "mcpicture";
             this.mcpicture.Size = new System.Drawing.Size(22, 22);
             this.mcpicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -548,313 +550,6 @@
             this.pictureBox5.TabStop = false;
             this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
-            // Pb_Progress
-            // 
-            this.Pb_Progress.BackColor = System.Drawing.Color.Transparent;
-            this.Pb_Progress.FillColor = System.Drawing.Color.MintCream;
-            this.Pb_Progress.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Pb_Progress.ForeColor = System.Drawing.Color.Black;
-            this.Pb_Progress.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
-            this.Pb_Progress.Location = new System.Drawing.Point(0, 468);
-            this.Pb_Progress.Name = "Pb_Progress";
-            this.Pb_Progress.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(91)))), ((int)(((byte)(50)))));
-            this.Pb_Progress.ProgressColor2 = System.Drawing.Color.Lime;
-            this.Pb_Progress.ShadowDecoration.Parent = this.Pb_Progress;
-            this.Pb_Progress.ShowPercentage = true;
-            this.Pb_Progress.Size = new System.Drawing.Size(970, 22);
-            this.Pb_Progress.TabIndex = 28;
-            this.Pb_Progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
-            // SettingsPage
-            // 
-            this.SettingsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(39)))));
-            this.SettingsPage.Controls.Add(this.label10);
-            this.SettingsPage.Controls.Add(this.lblbuilnumber);
-            this.SettingsPage.Controls.Add(this.lblver);
-            this.SettingsPage.Controls.Add(this.label8);
-            this.SettingsPage.Controls.Add(this.label7);
-            this.SettingsPage.Controls.Add(this.guna2CheckBox1);
-            this.SettingsPage.Controls.Add(this.guna2CheckBox2);
-            this.SettingsPage.Controls.Add(this.label6);
-            this.SettingsPage.Controls.Add(this.label5);
-            this.SettingsPage.Controls.Add(this.txtXms);
-            this.SettingsPage.Controls.Add(this.TxtXmx);
-            this.SettingsPage.Controls.Add(this.minRamLabel);
-            this.SettingsPage.Controls.Add(this.maxRamLabel);
-            this.SettingsPage.Controls.Add(this.rbParallelDownload);
-            this.SettingsPage.Controls.Add(this.cbSkipHashCheck);
-            this.SettingsPage.Controls.Add(this.cbSkipAssets);
-            this.SettingsPage.Location = new System.Drawing.Point(4, 4);
-            this.SettingsPage.Name = "SettingsPage";
-            this.SettingsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SettingsPage.Size = new System.Drawing.Size(609, 366);
-            this.SettingsPage.TabIndex = 0;
-            this.SettingsPage.Text = "Settings";
-            // 
-            // cbSkipAssets
-            // 
-            this.cbSkipAssets.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbSkipAssets.CheckedState.BorderRadius = 2;
-            this.cbSkipAssets.CheckedState.BorderThickness = 0;
-            this.cbSkipAssets.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbSkipAssets.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.cbSkipAssets.ForeColor = System.Drawing.Color.White;
-            this.cbSkipAssets.Location = new System.Drawing.Point(21, 102);
-            this.cbSkipAssets.Name = "cbSkipAssets";
-            this.cbSkipAssets.Size = new System.Drawing.Size(428, 23);
-            this.cbSkipAssets.TabIndex = 25;
-            this.cbSkipAssets.Text = "Skip Assets";
-            this.cbSkipAssets.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.cbSkipAssets.UncheckedState.BorderRadius = 2;
-            this.cbSkipAssets.UncheckedState.BorderThickness = 0;
-            this.cbSkipAssets.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.cbSkipAssets.UseVisualStyleBackColor = true;
-            // 
-            // cbSkipHashCheck
-            // 
-            this.cbSkipHashCheck.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbSkipHashCheck.CheckedState.BorderRadius = 2;
-            this.cbSkipHashCheck.CheckedState.BorderThickness = 0;
-            this.cbSkipHashCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbSkipHashCheck.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.cbSkipHashCheck.ForeColor = System.Drawing.Color.White;
-            this.cbSkipHashCheck.Location = new System.Drawing.Point(21, 127);
-            this.cbSkipHashCheck.Name = "cbSkipHashCheck";
-            this.cbSkipHashCheck.Size = new System.Drawing.Size(458, 27);
-            this.cbSkipHashCheck.TabIndex = 26;
-            this.cbSkipHashCheck.Text = "Skip Hash Check";
-            this.cbSkipHashCheck.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.cbSkipHashCheck.UncheckedState.BorderRadius = 2;
-            this.cbSkipHashCheck.UncheckedState.BorderThickness = 0;
-            this.cbSkipHashCheck.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.cbSkipHashCheck.UseVisualStyleBackColor = true;
-            // 
-            // rbParallelDownload
-            // 
-            this.rbParallelDownload.Checked = true;
-            this.rbParallelDownload.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbParallelDownload.CheckedState.BorderRadius = 2;
-            this.rbParallelDownload.CheckedState.BorderThickness = 0;
-            this.rbParallelDownload.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbParallelDownload.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.rbParallelDownload.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.rbParallelDownload.ForeColor = System.Drawing.Color.White;
-            this.rbParallelDownload.Location = new System.Drawing.Point(21, 153);
-            this.rbParallelDownload.Name = "rbParallelDownload";
-            this.rbParallelDownload.Size = new System.Drawing.Size(468, 28);
-            this.rbParallelDownload.TabIndex = 27;
-            this.rbParallelDownload.Text = "Parallel Download";
-            this.rbParallelDownload.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rbParallelDownload.UncheckedState.BorderRadius = 2;
-            this.rbParallelDownload.UncheckedState.BorderThickness = 0;
-            this.rbParallelDownload.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rbParallelDownload.UseVisualStyleBackColor = true;
-            // 
-            // TxtXmx
-            // 
-            this.TxtXmx.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TxtXmx.DefaultText = "";
-            this.TxtXmx.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.TxtXmx.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.TxtXmx.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TxtXmx.DisabledState.Parent = this.TxtXmx;
-            this.TxtXmx.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TxtXmx.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TxtXmx.FocusedState.Parent = this.TxtXmx;
-            this.TxtXmx.ForeColor = System.Drawing.Color.Black;
-            this.TxtXmx.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TxtXmx.HoverState.Parent = this.TxtXmx;
-            this.TxtXmx.Location = new System.Drawing.Point(117, 54);
-            this.TxtXmx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TxtXmx.Name = "TxtXmx";
-            this.TxtXmx.PasswordChar = '\0';
-            this.TxtXmx.PlaceholderForeColor = System.Drawing.Color.Black;
-            this.TxtXmx.PlaceholderText = "2048";
-            this.TxtXmx.SelectedText = "";
-            this.TxtXmx.ShadowDecoration.Parent = this.TxtXmx;
-            this.TxtXmx.Size = new System.Drawing.Size(47, 17);
-            this.TxtXmx.TabIndex = 33;
-            this.TxtXmx.TextChanged += new System.EventHandler(this.TxtXmx_TextChanged);
-            // 
-            // txtXms
-            // 
-            this.txtXms.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtXms.DefaultText = "";
-            this.txtXms.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtXms.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtXms.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtXms.DisabledState.Parent = this.txtXms;
-            this.txtXms.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtXms.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtXms.FocusedState.Parent = this.txtXms;
-            this.txtXms.ForeColor = System.Drawing.Color.Black;
-            this.txtXms.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtXms.HoverState.Parent = this.txtXms;
-            this.txtXms.Location = new System.Drawing.Point(117, 31);
-            this.txtXms.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtXms.Name = "txtXms";
-            this.txtXms.PasswordChar = '\0';
-            this.txtXms.PlaceholderForeColor = System.Drawing.Color.Black;
-            this.txtXms.PlaceholderText = "1024";
-            this.txtXms.SelectedText = "";
-            this.txtXms.ShadowDecoration.Parent = this.txtXms;
-            this.txtXms.Size = new System.Drawing.Size(47, 17);
-            this.txtXms.TabIndex = 34;
-            this.txtXms.TextChanged += new System.EventHandler(this.txtXms_TextChanged);
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(6, 3);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(392, 25);
-            this.label5.TabIndex = 37;
-            this.label5.Text = "Ram Settings:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(6, 74);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(395, 25);
-            this.label6.TabIndex = 38;
-            this.label6.Text = "Download Settings:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // guna2CheckBox2
-            // 
-            this.guna2CheckBox2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox2.CheckedState.BorderRadius = 2;
-            this.guna2CheckBox2.CheckedState.BorderThickness = 0;
-            this.guna2CheckBox2.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.guna2CheckBox2.ForeColor = System.Drawing.Color.White;
-            this.guna2CheckBox2.Location = new System.Drawing.Point(18, 207);
-            this.guna2CheckBox2.Name = "guna2CheckBox2";
-            this.guna2CheckBox2.Size = new System.Drawing.Size(428, 31);
-            this.guna2CheckBox2.TabIndex = 42;
-            this.guna2CheckBox2.Text = "Always on top";
-            this.guna2CheckBox2.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox2.UncheckedState.BorderRadius = 2;
-            this.guna2CheckBox2.UncheckedState.BorderThickness = 0;
-            this.guna2CheckBox2.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox2.UseVisualStyleBackColor = true;
-            // 
-            // guna2CheckBox1
-            // 
-            this.guna2CheckBox1.Checked = true;
-            this.guna2CheckBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox1.CheckedState.BorderRadius = 2;
-            this.guna2CheckBox1.CheckedState.BorderThickness = 0;
-            this.guna2CheckBox1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.guna2CheckBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.guna2CheckBox1.ForeColor = System.Drawing.Color.White;
-            this.guna2CheckBox1.Location = new System.Drawing.Point(18, 234);
-            this.guna2CheckBox1.Name = "guna2CheckBox1";
-            this.guna2CheckBox1.Size = new System.Drawing.Size(428, 31);
-            this.guna2CheckBox1.TabIndex = 43;
-            this.guna2CheckBox1.Text = "Enable discord activity ";
-            this.guna2CheckBox1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox1.UncheckedState.BorderRadius = 2;
-            this.guna2CheckBox1.UncheckedState.BorderThickness = 0;
-            this.guna2CheckBox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox1.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(6, 179);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(440, 25);
-            this.label7.TabIndex = 40;
-            this.label7.Text = "Launcher Settings:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Bold);
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(9, 268);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(440, 25);
-            this.label8.TabIndex = 44;
-            this.label8.Text = "Info:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblver
-            // 
-            this.lblver.AutoSize = true;
-            this.lblver.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblver.ForeColor = System.Drawing.Color.White;
-            this.lblver.Location = new System.Drawing.Point(14, 293);
-            this.lblver.Name = "lblver";
-            this.lblver.Size = new System.Drawing.Size(107, 19);
-            this.lblver.TabIndex = 45;
-            this.lblver.Text = "Version: V1.0.0";
-            // 
-            // lblbuilnumber
-            // 
-            this.lblbuilnumber.AutoSize = true;
-            this.lblbuilnumber.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblbuilnumber.ForeColor = System.Drawing.Color.White;
-            this.lblbuilnumber.Location = new System.Drawing.Point(17, 312);
-            this.lblbuilnumber.Name = "lblbuilnumber";
-            this.lblbuilnumber.Size = new System.Drawing.Size(104, 19);
-            this.lblbuilnumber.TabIndex = 46;
-            this.lblbuilnumber.Text = "Build number:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(1)), true);
-            this.label10.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label10.Location = new System.Drawing.Point(20, 331);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(103, 19);
-            this.label10.TabIndex = 47;
-            this.label10.Text = "More info here";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
-            // 
-            // HomePage
-            // 
-            this.HomePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(39)))));
-            this.HomePage.Controls.Add(this.label9);
-            this.HomePage.Controls.Add(this.label1);
-            this.HomePage.Location = new System.Drawing.Point(4, 4);
-            this.HomePage.Name = "HomePage";
-            this.HomePage.Padding = new System.Windows.Forms.Padding(3);
-            this.HomePage.Size = new System.Drawing.Size(609, 366);
-            this.HomePage.TabIndex = 2;
-            this.HomePage.Text = "Home";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(18, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 25);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Welcome | Username";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(19, 71);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(571, 20);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Shhh, this design is not done yet so please don`t use this launcher yet";
-            // 
             // Misc
             // 
             this.Misc.Alignment = System.Windows.Forms.TabAlignment.Bottom;
@@ -892,22 +587,248 @@
             this.Misc.Transition = animation1;
             this.Misc.TransitionType = Utilities.BunifuPages.BunifuAnimatorNS.AnimationType.Custom;
             // 
-            // maxRamLabel
+            // HomePage
             // 
-            this.maxRamLabel.AllowParentOverrides = false;
-            this.maxRamLabel.AutoEllipsis = false;
-            this.maxRamLabel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.maxRamLabel.CursorType = System.Windows.Forms.Cursors.Default;
-            this.maxRamLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.maxRamLabel.ForeColor = System.Drawing.Color.White;
-            this.maxRamLabel.Location = new System.Drawing.Point(21, 54);
-            this.maxRamLabel.Name = "maxRamLabel";
-            this.maxRamLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.maxRamLabel.Size = new System.Drawing.Size(81, 17);
-            this.maxRamLabel.TabIndex = 18;
-            this.maxRamLabel.Text = "Ram Amount";
-            this.maxRamLabel.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.maxRamLabel.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            this.HomePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(39)))));
+            this.HomePage.Controls.Add(this.label9);
+            this.HomePage.Controls.Add(this.announcementDescriptionTextBox);
+            this.HomePage.Controls.Add(this.listBox1);
+            this.HomePage.Controls.Add(this.label1);
+            this.HomePage.Location = new System.Drawing.Point(4, 4);
+            this.HomePage.Name = "HomePage";
+            this.HomePage.Padding = new System.Windows.Forms.Padding(3);
+            this.HomePage.Size = new System.Drawing.Size(609, 366);
+            this.HomePage.TabIndex = 2;
+            this.HomePage.Text = "Home";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(19, 54);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(298, 20);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Here are the latest announcements:";
+            // 
+            // announcementDescriptionTextBox
+            // 
+            this.announcementDescriptionTextBox.Location = new System.Drawing.Point(164, 77);
+            this.announcementDescriptionTextBox.Name = "announcementDescriptionTextBox";
+            this.announcementDescriptionTextBox.Size = new System.Drawing.Size(417, 275);
+            this.announcementDescriptionTextBox.TabIndex = 13;
+            this.announcementDescriptionTextBox.Text = "";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Items.AddRange(new object[] {
+            "1.5.3",
+            "4"});
+            this.listBox1.Location = new System.Drawing.Point(23, 77);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(135, 274);
+            this.listBox1.TabIndex = 12;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(18, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 25);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Welcome | Username";
+            // 
+            // SettingsPage
+            // 
+            this.SettingsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(39)))));
+            this.SettingsPage.Controls.Add(this.cbFullscreen);
+            this.SettingsPage.Controls.Add(this.lblbuilnumber);
+            this.SettingsPage.Controls.Add(this.lblver);
+            this.SettingsPage.Controls.Add(this.label8);
+            this.SettingsPage.Controls.Add(this.label7);
+            this.SettingsPage.Controls.Add(this.guna2CheckBox1);
+            this.SettingsPage.Controls.Add(this.guna2CheckBox2);
+            this.SettingsPage.Controls.Add(this.label6);
+            this.SettingsPage.Controls.Add(this.label5);
+            this.SettingsPage.Controls.Add(this.txtXms);
+            this.SettingsPage.Controls.Add(this.TxtXmx);
+            this.SettingsPage.Controls.Add(this.minRamLabel);
+            this.SettingsPage.Controls.Add(this.maxRamLabel);
+            this.SettingsPage.Controls.Add(this.rbParallelDownload);
+            this.SettingsPage.Controls.Add(this.cbSkipHashCheck);
+            this.SettingsPage.Controls.Add(this.cbSkipAssets);
+            this.SettingsPage.Location = new System.Drawing.Point(4, 4);
+            this.SettingsPage.Name = "SettingsPage";
+            this.SettingsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SettingsPage.Size = new System.Drawing.Size(609, 366);
+            this.SettingsPage.TabIndex = 0;
+            this.SettingsPage.Text = "Settings";
+            // 
+            // lblbuilnumber
+            // 
+            this.lblbuilnumber.AutoSize = true;
+            this.lblbuilnumber.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblbuilnumber.ForeColor = System.Drawing.Color.White;
+            this.lblbuilnumber.Location = new System.Drawing.Point(14, 360);
+            this.lblbuilnumber.Name = "lblbuilnumber";
+            this.lblbuilnumber.Size = new System.Drawing.Size(104, 19);
+            this.lblbuilnumber.TabIndex = 46;
+            this.lblbuilnumber.Text = "Build number:";
+            // 
+            // lblver
+            // 
+            this.lblver.AutoSize = true;
+            this.lblver.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblver.ForeColor = System.Drawing.Color.White;
+            this.lblver.Location = new System.Drawing.Point(11, 341);
+            this.lblver.Name = "lblver";
+            this.lblver.Size = new System.Drawing.Size(107, 19);
+            this.lblver.TabIndex = 45;
+            this.lblver.Text = "Version: V1.0.0";
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(6, 316);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(440, 25);
+            this.label8.TabIndex = 44;
+            this.label8.Text = "Info:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(6, 179);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(440, 25);
+            this.label7.TabIndex = 40;
+            this.label7.Text = "Launcher Settings:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2CheckBox1
+            // 
+            this.guna2CheckBox1.Checked = true;
+            this.guna2CheckBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox1.CheckedState.BorderRadius = 2;
+            this.guna2CheckBox1.CheckedState.BorderThickness = 0;
+            this.guna2CheckBox1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.guna2CheckBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.guna2CheckBox1.ForeColor = System.Drawing.Color.White;
+            this.guna2CheckBox1.Location = new System.Drawing.Point(18, 234);
+            this.guna2CheckBox1.Name = "guna2CheckBox1";
+            this.guna2CheckBox1.Size = new System.Drawing.Size(428, 31);
+            this.guna2CheckBox1.TabIndex = 43;
+            this.guna2CheckBox1.Text = "Enable discord activity ";
+            this.guna2CheckBox1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox1.UncheckedState.BorderRadius = 2;
+            this.guna2CheckBox1.UncheckedState.BorderThickness = 0;
+            this.guna2CheckBox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox1.UseVisualStyleBackColor = true;
+            this.guna2CheckBox1.CheckedChanged += new System.EventHandler(this.guna2CheckBox1_CheckedChanged);
+            // 
+            // guna2CheckBox2
+            // 
+            this.guna2CheckBox2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox2.CheckedState.BorderRadius = 2;
+            this.guna2CheckBox2.CheckedState.BorderThickness = 0;
+            this.guna2CheckBox2.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.guna2CheckBox2.ForeColor = System.Drawing.Color.White;
+            this.guna2CheckBox2.Location = new System.Drawing.Point(18, 207);
+            this.guna2CheckBox2.Name = "guna2CheckBox2";
+            this.guna2CheckBox2.Size = new System.Drawing.Size(428, 31);
+            this.guna2CheckBox2.TabIndex = 42;
+            this.guna2CheckBox2.Text = "Always on top";
+            this.guna2CheckBox2.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox2.UncheckedState.BorderRadius = 2;
+            this.guna2CheckBox2.UncheckedState.BorderThickness = 0;
+            this.guna2CheckBox2.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox2.UseVisualStyleBackColor = true;
+            this.guna2CheckBox2.Click += new System.EventHandler(this.guna2CheckBox2_Click);
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(6, 74);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(395, 25);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "Download Settings:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(6, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(392, 25);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "Ram Settings:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtXms
+            // 
+            this.txtXms.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtXms.DefaultText = "";
+            this.txtXms.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtXms.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtXms.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtXms.DisabledState.Parent = this.txtXms;
+            this.txtXms.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtXms.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtXms.FocusedState.Parent = this.txtXms;
+            this.txtXms.ForeColor = System.Drawing.Color.Black;
+            this.txtXms.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtXms.HoverState.Parent = this.txtXms;
+            this.txtXms.Location = new System.Drawing.Point(117, 31);
+            this.txtXms.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtXms.Name = "txtXms";
+            this.txtXms.PasswordChar = '\0';
+            this.txtXms.PlaceholderForeColor = System.Drawing.Color.Black;
+            this.txtXms.PlaceholderText = "1024";
+            this.txtXms.SelectedText = "";
+            this.txtXms.ShadowDecoration.Parent = this.txtXms;
+            this.txtXms.Size = new System.Drawing.Size(47, 17);
+            this.txtXms.TabIndex = 34;
+            this.txtXms.TextChanged += new System.EventHandler(this.txtXms_TextChanged);
+            // 
+            // TxtXmx
+            // 
+            this.TxtXmx.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TxtXmx.DefaultText = "";
+            this.TxtXmx.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.TxtXmx.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.TxtXmx.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TxtXmx.DisabledState.Parent = this.TxtXmx;
+            this.TxtXmx.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TxtXmx.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TxtXmx.FocusedState.Parent = this.TxtXmx;
+            this.TxtXmx.ForeColor = System.Drawing.Color.Black;
+            this.TxtXmx.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TxtXmx.HoverState.Parent = this.TxtXmx;
+            this.TxtXmx.Location = new System.Drawing.Point(117, 54);
+            this.TxtXmx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TxtXmx.Name = "TxtXmx";
+            this.TxtXmx.PasswordChar = '\0';
+            this.TxtXmx.PlaceholderForeColor = System.Drawing.Color.Black;
+            this.TxtXmx.PlaceholderText = "2048";
+            this.TxtXmx.SelectedText = "";
+            this.TxtXmx.ShadowDecoration.Parent = this.TxtXmx;
+            this.TxtXmx.Size = new System.Drawing.Size(47, 17);
+            this.TxtXmx.TabIndex = 33;
+            this.TxtXmx.TextChanged += new System.EventHandler(this.TxtXmx_TextChanged);
             // 
             // minRamLabel
             // 
@@ -925,6 +846,122 @@
             this.minRamLabel.Text = "Allocated Ram";
             this.minRamLabel.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.minRamLabel.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // maxRamLabel
+            // 
+            this.maxRamLabel.AllowParentOverrides = false;
+            this.maxRamLabel.AutoEllipsis = false;
+            this.maxRamLabel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.maxRamLabel.CursorType = System.Windows.Forms.Cursors.Default;
+            this.maxRamLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.maxRamLabel.ForeColor = System.Drawing.Color.White;
+            this.maxRamLabel.Location = new System.Drawing.Point(21, 54);
+            this.maxRamLabel.Name = "maxRamLabel";
+            this.maxRamLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.maxRamLabel.Size = new System.Drawing.Size(81, 17);
+            this.maxRamLabel.TabIndex = 18;
+            this.maxRamLabel.Text = "Ram Amount";
+            this.maxRamLabel.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.maxRamLabel.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // rbParallelDownload
+            // 
+            this.rbParallelDownload.Checked = true;
+            this.rbParallelDownload.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rbParallelDownload.CheckedState.BorderRadius = 2;
+            this.rbParallelDownload.CheckedState.BorderThickness = 0;
+            this.rbParallelDownload.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rbParallelDownload.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.rbParallelDownload.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.rbParallelDownload.ForeColor = System.Drawing.Color.White;
+            this.rbParallelDownload.Location = new System.Drawing.Point(21, 153);
+            this.rbParallelDownload.Name = "rbParallelDownload";
+            this.rbParallelDownload.Size = new System.Drawing.Size(468, 28);
+            this.rbParallelDownload.TabIndex = 27;
+            this.rbParallelDownload.Text = "Parallel Download";
+            this.rbParallelDownload.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.rbParallelDownload.UncheckedState.BorderRadius = 2;
+            this.rbParallelDownload.UncheckedState.BorderThickness = 0;
+            this.rbParallelDownload.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.rbParallelDownload.UseVisualStyleBackColor = true;
+            this.rbParallelDownload.Click += new System.EventHandler(this.rbParallelDownload_Click);
+            // 
+            // cbSkipHashCheck
+            // 
+            this.cbSkipHashCheck.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbSkipHashCheck.CheckedState.BorderRadius = 2;
+            this.cbSkipHashCheck.CheckedState.BorderThickness = 0;
+            this.cbSkipHashCheck.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbSkipHashCheck.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.cbSkipHashCheck.ForeColor = System.Drawing.Color.White;
+            this.cbSkipHashCheck.Location = new System.Drawing.Point(21, 127);
+            this.cbSkipHashCheck.Name = "cbSkipHashCheck";
+            this.cbSkipHashCheck.Size = new System.Drawing.Size(458, 27);
+            this.cbSkipHashCheck.TabIndex = 26;
+            this.cbSkipHashCheck.Text = "Skip Hash Check";
+            this.cbSkipHashCheck.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbSkipHashCheck.UncheckedState.BorderRadius = 2;
+            this.cbSkipHashCheck.UncheckedState.BorderThickness = 0;
+            this.cbSkipHashCheck.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbSkipHashCheck.UseVisualStyleBackColor = true;
+            this.cbSkipHashCheck.Click += new System.EventHandler(this.cbSkipHashCheck_Click);
+            // 
+            // cbSkipAssets
+            // 
+            this.cbSkipAssets.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbSkipAssets.CheckedState.BorderRadius = 2;
+            this.cbSkipAssets.CheckedState.BorderThickness = 0;
+            this.cbSkipAssets.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbSkipAssets.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.cbSkipAssets.ForeColor = System.Drawing.Color.White;
+            this.cbSkipAssets.Location = new System.Drawing.Point(21, 102);
+            this.cbSkipAssets.Name = "cbSkipAssets";
+            this.cbSkipAssets.Size = new System.Drawing.Size(428, 23);
+            this.cbSkipAssets.TabIndex = 25;
+            this.cbSkipAssets.Text = "Skip Assets";
+            this.cbSkipAssets.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbSkipAssets.UncheckedState.BorderRadius = 2;
+            this.cbSkipAssets.UncheckedState.BorderThickness = 0;
+            this.cbSkipAssets.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbSkipAssets.UseVisualStyleBackColor = true;
+            this.cbSkipAssets.Click += new System.EventHandler(this.cbSkipAssets_Click);
+            // 
+            // Pb_Progress
+            // 
+            this.Pb_Progress.BackColor = System.Drawing.Color.Transparent;
+            this.Pb_Progress.FillColor = System.Drawing.Color.MintCream;
+            this.Pb_Progress.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Pb_Progress.ForeColor = System.Drawing.Color.Black;
+            this.Pb_Progress.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.Pb_Progress.Location = new System.Drawing.Point(0, 468);
+            this.Pb_Progress.Name = "Pb_Progress";
+            this.Pb_Progress.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(91)))), ((int)(((byte)(50)))));
+            this.Pb_Progress.ProgressColor2 = System.Drawing.Color.Lime;
+            this.Pb_Progress.ShadowDecoration.Parent = this.Pb_Progress;
+            this.Pb_Progress.ShowPercentage = true;
+            this.Pb_Progress.Size = new System.Drawing.Size(970, 22);
+            this.Pb_Progress.TabIndex = 28;
+            this.Pb_Progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // cbFullscreen
+            // 
+            this.cbFullscreen.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbFullscreen.CheckedState.BorderRadius = 2;
+            this.cbFullscreen.CheckedState.BorderThickness = 0;
+            this.cbFullscreen.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbFullscreen.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.cbFullscreen.ForeColor = System.Drawing.Color.White;
+            this.cbFullscreen.Location = new System.Drawing.Point(18, 260);
+            this.cbFullscreen.Name = "cbFullscreen";
+            this.cbFullscreen.Size = new System.Drawing.Size(428, 31);
+            this.cbFullscreen.TabIndex = 47;
+            this.cbFullscreen.Text = "Start minecraft in fullscreen";
+            this.cbFullscreen.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbFullscreen.UncheckedState.BorderRadius = 2;
+            this.cbFullscreen.UncheckedState.BorderThickness = 0;
+            this.cbFullscreen.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbFullscreen.UseVisualStyleBackColor = true;
+            this.cbFullscreen.CheckedChanged += new System.EventHandler(this.cbFullscreen_CheckedChanged);
             // 
             // FrmMain
             // 
@@ -953,11 +990,11 @@
             this.panel2.ResumeLayout(false);
             this.guna2ShadowPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            this.SettingsPage.ResumeLayout(false);
-            this.SettingsPage.PerformLayout();
+            this.Misc.ResumeLayout(false);
             this.HomePage.ResumeLayout(false);
             this.HomePage.PerformLayout();
-            this.Misc.ResumeLayout(false);
+            this.SettingsPage.ResumeLayout(false);
+            this.SettingsPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -984,10 +1021,8 @@
         private Bunifu.UI.WinForms.BunifuPictureBox mcpicture;
         private Bunifu.UI.WinForms.BunifuPages Misc;
         private System.Windows.Forms.TabPage HomePage;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage SettingsPage;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblbuilnumber;
         private System.Windows.Forms.Label lblver;
         private System.Windows.Forms.Label label8;
@@ -1003,5 +1038,9 @@
         private Guna.UI2.WinForms.Guna2CheckBox rbParallelDownload;
         private Guna.UI2.WinForms.Guna2CheckBox cbSkipHashCheck;
         private Guna.UI2.WinForms.Guna2CheckBox cbSkipAssets;
+        private System.Windows.Forms.RichTextBox announcementDescriptionTextBox;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label9;
+        private Guna.UI2.WinForms.Guna2CheckBox cbFullscreen;
     }
 }

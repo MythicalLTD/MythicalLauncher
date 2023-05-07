@@ -21,6 +21,7 @@ namespace MythicalLauncher
         public DiscordRpcClient client;
         private string appConfig = Application.StartupPath + @"\settings.ini";
         private string versionfile = Application.StartupPath + @"\version";
+
         /* Core Stuff */
         public static string appname;
         public static string applogo;
@@ -31,6 +32,7 @@ namespace MythicalLauncher
         public static string appweb;
         public static string appstore;
         public static string appvote;
+
         /* DISCORD RPC STRINGS */
         public static string appdiscord;
         private static string enable_discordrpc;
@@ -43,16 +45,7 @@ namespace MythicalLauncher
         /* AUTO JOINER */
         public static string enable_auto_joiner;
         public static string auto_joiner_ip;
-
-        public static JObject GetDataFromUrl(string url)
-        {
-            using (var client = new WebClient())
-            {
-                string jsonText = client.DownloadString(url);
-                JObject jsonObject = JObject.Parse(jsonText);
-                return jsonObject;
-            }
-        }
+        public static int auto_joiner_port;
 
         void InitializeRPC()
         {
@@ -142,7 +135,9 @@ namespace MythicalLauncher
                     discordrpc_description = data.discordrpc_description;
                     enable_auto_joiner = data.enable_auto_joiner;
                     auto_joiner_ip = data.auto_joiner_ip;
+                    auto_joiner_port = data.auto_joiner_port;
                     lblver.Text = "V" + version;
+
                     loader.Color = ColorTranslator.FromHtml(appcolour);
                     Console.WriteLine("[{0:HH:mm:ss}] [SETTINGS] Done", DateTime.Now);
                 }
@@ -198,14 +193,10 @@ namespace MythicalLauncher
 
         private void DisplayImage()
         {
-            var appcfg = new ConfigParser(appConfig);
-            var r_key = appcfg.GetValue("RemoteLauncher", "key");
-            string jsonFilePath = r_key + "/api/mythicallauncher/settings/getconfig.php";
-            JObject data = GetDataFromUrl(jsonFilePath);
-            string imageUrl = (string)data["appLogo"];
+
             using (WebClient webClient = new WebClient())
             {
-                byte[] imageBytes = webClient.DownloadData(imageUrl);
+                byte[] imageBytes = webClient.DownloadData(FrmLoading.applogo);
                 using (MemoryStream memoryStream = new MemoryStream(imageBytes))
                 {
                     logo.Image = Image.FromStream(memoryStream);
@@ -213,7 +204,7 @@ namespace MythicalLauncher
             }
             using (WebClient webClient = new WebClient())
             {
-                byte[] iconBytes = webClient.DownloadData(imageUrl);
+                byte[] iconBytes = webClient.DownloadData(FrmLoading.applogo);
                 using (MemoryStream ms = new MemoryStream(iconBytes))
                 {
                     Bitmap bitmap = (Bitmap)Image.FromStream(ms);
@@ -223,6 +214,8 @@ namespace MythicalLauncher
         }
         private async void FrmLoading_Load(object sender, EventArgs e)
         {
+            var cfg = new ConfigParser(appConfig);
+            var enablerpc = cfg.GetValue("MAIN","enable_rpc");
             Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Please wait while we load all plugins", DateTime.Now);
             Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Loading updater..", DateTime.Now);
             askUpdate();
@@ -231,7 +224,7 @@ namespace MythicalLauncher
             GetSettings();
             Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Done..", DateTime.Now);
             Console.WriteLine("[{0:HH:mm:ss}] [PRELOADER] Loading Discord RPC..", DateTime.Now);
-            if (enable_discordrpc == "true")
+            if (enable_discordrpc == "true" || enablerpc == "true")
             {
                 InitializeRPC();
             }

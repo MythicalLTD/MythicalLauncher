@@ -1,7 +1,10 @@
 ﻿
+using Guna.UI2.WinForms.Suite;
 using MythicalLauncher.Properties;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Net;
 using System.Windows.Forms;
 
 
@@ -67,6 +70,24 @@ namespace MythicalLauncher
 
             }
 
+        }
+        private void DisplayImage()
+        {
+            using (WebClient webClient = new WebClient())
+            {
+                byte[] iconBytes = webClient.DownloadData(FrmLoading.applogo);
+                using (MemoryStream ms = new MemoryStream(iconBytes))
+                {
+                    Bitmap bitmap = (Bitmap)Image.FromStream(ms);
+                    this.Icon = Icon.FromHandle(bitmap.GetHicon());
+                }
+            }
+        }
+
+        private void FrmAlert_Load(object sender, EventArgs e)
+        {
+            DisplayImage();
+            this.Text = FrmLoading.appname;
         }
 
         public void showAlert(string msg, enmType type)

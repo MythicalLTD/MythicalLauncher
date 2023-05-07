@@ -356,12 +356,6 @@
     <None Include="buildnumber">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Compile Include="FrmChangeLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmChangeLog.Designer.cs">
-      <DependentUpon>FrmChangeLog.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -400,9 +394,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmChangeLog.resx">
-      <DependentUpon>FrmChangeLog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmUpdate.resx">
       <DependentUpon>FrmUpdate.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,9 +1,11 @@
 ﻿using CmlLib.Core;
 using CmlLib.Core.Auth;
 using CmlLib.Core.Downloader;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Salaros.Configuration;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -20,6 +22,7 @@ namespace MythicalLauncher
         private string appConfig = Application.StartupPath + @"\settings.ini";
         private string buildfile = Application.StartupPath + @"\buildnumber";
         private string versionfile = Application.StartupPath + @"\version";
+        List<Announcement> announcements = new List<Announcement>();
 
         public FrmMain(MSession session)
         {
@@ -55,8 +58,7 @@ namespace MythicalLauncher
             }
         }
 
-
-        private void FrmMain_Load(object sender, EventArgs e)
+        void getAvatar()
         {
             string avatarUrl = $"https://minotar.net/avatar/{FrmLogin.l_username}";
 
@@ -65,7 +67,12 @@ namespace MythicalLauncher
                 byte[] imageBytes = client.DownloadData(avatarUrl);
                 mcpicture.Image = System.Drawing.Image.FromStream(new System.IO.MemoryStream(imageBytes));
             }
-            if (Program.debugmdoe == "true")
+        }
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            LoadAnnouncements();
+            loadAnnouncements();
+            if (Program.debugmode == "true")
             {
                 lblver.Text = "Version: " + File.ReadAllText(versionfile) + " (DEBUG MODE)";
             }
@@ -73,6 +80,7 @@ namespace MythicalLauncher
             {
                 lblver.Text = "Version: " + File.ReadAllText(versionfile);
             }
+            getAvatar();
             this.WindowState = FormWindowState.Normal;
             label1.Text = "Welcome, " + FrmLogin.l_username;
             lblbuilnumber.Text = "Build number: " + File.ReadAllText(buildfile);
@@ -80,26 +88,51 @@ namespace MythicalLauncher
             DisplayImage();
             LoadSettings();
         }
-
-        public static JObject GetDataFromUrl(string url)
+        void LoadAnnouncements()
         {
-            using (var client = new WebClient())
-            {
-                string jsonText = client.DownloadString(url);
-                JObject jsonObject = JObject.Parse(jsonText);
-                return jsonObject;
-            }
+            listBox1.ClearSelected();
+            listBox1.DataSource = announcements;
+            listBox1.DisplayMember = "Title";
+
+
         }
+        void loadAnnouncements()
+        {
+            try
+            {
+                var cfg = new ConfigParser(appConfig);
+                var r_key = cfg.GetValue("RemoteLauncher", "key");
+                string url = r_key + "/api/mythicallauncher/announcements.php";
+                using (WebClient client = new WebClient())
+                {
+                    string json = client.DownloadString(url);
+                    List<Announcement> announcements = JsonConvert.DeserializeObject<List<Announcement>>(json);
+                    listBox1.DataSource = announcements;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Console.WriteLine("[{0:HH:mm:ss}] [Announcements] "+ex.Message);
+            }
+            
+        }
+        public class Announcement
+        {
+            public string Title { get; set; }
+            public string Description { get; set; }
+            public DateTime Date { get; set; }
+            public override string ToString()
+            {
+                return Title;
+            }
+        }       
+
         private void DisplayImage()
         {
-            var appcfg = new ConfigParser(appConfig);
-            var r_key = appcfg.GetValue("RemoteLauncher", "key");
-            string jsonFilePath = r_key + "/api/mythicallauncher/settings/getconfig.php";
-            JObject data = GetDataFromUrl(jsonFilePath);
-            string imageUrl = (string)data["appLogo"];
             using (WebClient webClient = new WebClient())
             {
-                byte[] imageBytes = webClient.DownloadData(imageUrl);
+                byte[] imageBytes = webClient.DownloadData(FrmLoading.applogo);
                 using (MemoryStream memoryStream = new MemoryStream(imageBytes))
                 {
                     pictureBox1.Image = Image.FromStream(memoryStream);
@@ -107,30 +140,85 @@ namespace MythicalLauncher
             }
             using (WebClient webClient = new WebClient())
             {
-                byte[] iconBytes = webClient.DownloadData(imageUrl);
+                byte[] iconBytes = webClient.DownloadData(FrmLoading.applogo);
                 using (MemoryStream ms = new MemoryStream(iconBytes))
                 {
                     Bitmap bitmap = (Bitmap)Image.FromStream(ms);
                     this.Icon = Icon.FromHandle(bitmap.GetHicon());
                 }
             }
-            string bgimageURL = (string)data["appBg"];
             using (WebClient backWebClient = new WebClient())
             {
-                byte[] bgimageBytes = backWebClient.DownloadData(bgimageURL);
+                byte[] bgimageBytes = backWebClient.DownloadData(FrmLoading.appbg);
                 using (MemoryStream bgmemoryStream = new MemoryStream(bgimageBytes))
                 {
                     this.BackgroundImage = Image.FromStream(bgmemoryStream);
                 }
             }
-            string appcolour = (string)data["appMainColour"];
-            btnplay.FillColor = ColorTranslator.FromHtml(appcolour);
-            btnplay.FillColor2 = ColorTranslator.FromHtml(appcolour);
+            btnplay.FillColor = ColorTranslator.FromHtml(FrmLoading.appcolour);
+            btnplay.FillColor2 = ColorTranslator.FromHtml(FrmLoading.appcolour);
         }
         void LoadSettings()
         {
-            lbllaunchername.Text = FrmLoading.version + " | Home";
+            var cfg = new ConfigParser(appConfig);
+            lbllaunchername.Text = FrmLoading.appname + " | Home";
             lblver.Text = "Version: " + FrmLoading.version;
+            var SkipAssets = cfg.GetValue("MAIN", "SkipAssets");
+            var SkipHashCheck = cfg.GetValue("MAIN", "SkipHashCheck");
+            var ParallelDownload = cfg.GetValue("MAIN", "ParallelDownload");
+            var LockTOP = cfg.GetValue("MAIN", "LockTOP");
+            var enable_rpc = cfg.GetValue("MAIN", "enable_rpc");
+            var fullscreen = cfg.GetValue("MAIN", "full-screen");
+            if (SkipAssets == "true")
+            {
+                cbSkipAssets.Checked = true;
+            }
+            else if (SkipAssets == "false")
+            {
+                cbSkipAssets.Checked = false;
+            }
+            if (SkipHashCheck == "true")
+            {
+                cbSkipHashCheck.Checked = true;
+            }
+            else if (SkipHashCheck == "false")
+            {
+                cbSkipHashCheck.Checked = false;
+            }
+            if (ParallelDownload == "true")
+            {
+                rbParallelDownload.Checked = true;
+            }
+            else if (ParallelDownload == "false")
+            {
+                rbParallelDownload.Checked = false;
+            }
+            if (LockTOP == "true")
+            {
+                guna2CheckBox2.Checked = true;
+                this.TopMost = true;
+            }
+            else if (LockTOP == "false")
+            {
+                guna2CheckBox2.Checked = false;
+                this.TopMost = false;
+            }
+            if (enable_rpc == "true")
+            {
+                guna2CheckBox2.Checked = true;
+            }
+            else if (enable_rpc == "false") 
+            {
+                guna2CheckBox1.Checked = false;
+            }
+            if (fullscreen == "true")
+            {
+                cbFullscreen.Checked = true;
+            }
+            else if (fullscreen == "false")
+            {
+                cbFullscreen.Checked = false;
+            }
 
         }
         private async void FrmMain_Shown(object sender, EventArgs e)
@@ -198,12 +286,14 @@ namespace MythicalLauncher
                     MaximumRamMb = int.Parse(TxtXmx.Text),
                     Session = this.session,
                     GameLauncherName = FrmLoading.appname,
+                    FullScreen = cbFullscreen.Checked
 
                 };
 
                 if (FrmLoading.enable_auto_joiner == "true")
                 {
                     launchOption.ServerIp = FrmLoading.auto_joiner_ip;
+                    launchOption.ServerPort = FrmLoading.auto_joiner_port;
                 }
 
                 if (!useMJava)
@@ -340,12 +430,102 @@ namespace MythicalLauncher
             await refreshVersions(null);
         }
 
-
-        private void label10_Click(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FrmChangeLog x = new FrmChangeLog();
-            x.Show();
-            this.Hide();
+            if (listBox1.SelectedItem != null)
+            {
+                Announcement selectedAnnouncement = (Announcement)listBox1.SelectedItem;
+                announcementDescriptionTextBox.Text = selectedAnnouncement.Description;
+            }
+        }
+
+        private void cbSkipAssets_Click(object sender, EventArgs e)
+        {
+            var cfg = new ConfigParser(appConfig);
+            if (cbSkipAssets.Checked == true)
+            {
+                cfg.SetValue("MAIN", "SkipAssets", "true");
+            }
+            else if (cbSkipAssets.Checked == false)
+            {
+                cfg.SetValue("MAIN", "SkipAssets", "false");
+            }
+            cfg.Save();
+        }
+
+        private void cbSkipHashCheck_Click(object sender, EventArgs e)
+        {
+            var cfg = new ConfigParser(appConfig);
+
+            if (cbSkipHashCheck.Checked == true)
+            {
+                cfg.SetValue("MAIN", "SkipHashCheck", "true");
+            }
+            else if (cbSkipHashCheck.Checked == false)
+            {
+                cfg.SetValue("MAIN", "SkipHashCheck", "false");
+            }
+            cfg.Save();
+        }
+
+        private void rbParallelDownload_Click(object sender, EventArgs e)
+        {
+            var cfg = new ConfigParser(appConfig);
+            if (rbParallelDownload.Checked == true)
+            {
+                cfg.SetValue("MAIN", "ParallelDownload", "true");
+            }
+            else if(rbParallelDownload.Checked == false)
+            {
+                cfg.SetValue("MAIN", "ParallelDownload", "false");
+            }
+            cfg.Save();
+        }
+
+        private void guna2CheckBox2_Click(object sender, EventArgs e)
+        {
+            var cfg = new ConfigParser(appConfig);
+            if(guna2CheckBox2.Checked == true)
+            {
+                cfg.SetValue("MAIN", "LockTOP", "true");
+                this.TopMost = true;
+            }
+            else if (guna2CheckBox2.Checked == false)
+            {
+                cfg.SetValue("MAIN", "LockTOP", "false");
+                this.TopMost = false;
+            }
+            cfg.Save();
+        }
+
+        private void guna2CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            var cfg = new ConfigParser(appConfig);
+            if (guna2CheckBox1.Checked == true)
+            {
+                cfg.SetValue("MAIN", "enable_rpc", "true");
+                Alert("Please restart the app to apply this change", FrmAlert.enmType.Warning);
+            }
+            else if (guna2CheckBox1.Checked == false)
+            {
+                cfg.SetValue("MAIN", "enable_rpc", "false");
+                Alert("Please restart the app to apply this change", FrmAlert.enmType.Warning);
+            }
+            cfg.Save();
+        }
+
+        private void cbFullscreen_CheckedChanged(object sender, EventArgs e)
+        {
+            var cfg = new ConfigParser(appConfig);
+            if (cbFullscreen.Checked == true)
+            {
+                cfg.SetValue("MAIN", "full-screen","true");
+            }
+            else if (cbFullscreen.Checked == false)
+            {
+                cfg.SetValue("MAIN", "full-screen", "false");
+            }
+            cfg.Save();
         }
     }
 }

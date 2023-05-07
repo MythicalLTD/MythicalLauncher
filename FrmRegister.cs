@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace MythicalLauncher
 {
     public partial class FrmRegister : Form
@@ -41,14 +42,9 @@ namespace MythicalLauncher
         }
         private void DisplayImage()
         {
-            var appcfg = new ConfigParser(appConfig);
-            var r_key = appcfg.GetValue("RemoteLauncher", "key");
-            string jsonFilePath = r_key + "/api/mythicallauncher/settings/getconfig.php";
-            JObject data = GetDataFromUrl(jsonFilePath);
-            string imageUrl = (string)data["appLogo"];
             using (WebClient webClient = new WebClient())
             {
-                byte[] imageBytes = webClient.DownloadData(imageUrl);
+                byte[] imageBytes = webClient.DownloadData(FrmLoading.applogo);
                 using (MemoryStream memoryStream = new MemoryStream(imageBytes))
                 {
                     pictureBox1.Image = Image.FromStream(memoryStream);
@@ -56,25 +52,23 @@ namespace MythicalLauncher
             }
             using (WebClient webClient = new WebClient())
             {
-                byte[] iconBytes = webClient.DownloadData(imageUrl);
+                byte[] iconBytes = webClient.DownloadData(FrmLoading.applogo);
                 using (MemoryStream ms = new MemoryStream(iconBytes))
                 {
                     Bitmap bitmap = (Bitmap)Image.FromStream(ms);
                     this.Icon = Icon.FromHandle(bitmap.GetHicon());
                 }
             }
-            string bgimageURL = (string)data["appBg"];
             using (WebClient backWebClient = new WebClient())
             {
-                byte[] bgimageBytes = backWebClient.DownloadData(bgimageURL);
+                byte[] bgimageBytes = backWebClient.DownloadData(FrmLoading.appbg);
                 using (MemoryStream bgmemoryStream = new MemoryStream(bgimageBytes))
                 {
                     this.BackgroundImage = Image.FromStream(bgmemoryStream);
                 }
             }
-            string appcolour = (string)data["appMainColour"];
-            registerbutton.FillColor = ColorTranslator.FromHtml(appcolour);
-            registerbutton.FillColor2 = ColorTranslator.FromHtml(appcolour);
+            registerbutton.FillColor = ColorTranslator.FromHtml(FrmLoading.appcolour);
+            registerbutton.FillColor2 = ColorTranslator.FromHtml(FrmLoading.appcolour);
         }
         void LoadSettings()
         {
