@@ -1,6 +1,5 @@
 ﻿using CmlLib.Core.Auth;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Salaros.Configuration;
 using System;
 using System.Drawing;
@@ -14,7 +13,10 @@ namespace MythicalLauncher
     public partial class FrmLogin : Form
     {
         MLogin login = new MLogin();
-  
+        /* FUNCTIONS FOR ADMIN USERS */
+        public static string a_email;
+        public static string a_password;
+        /* FUNCTIONS TO GET USER INFO */
         public static string l_username;
         public static string l_email;
         public static string l_banned;
@@ -152,7 +154,7 @@ namespace MythicalLauncher
         }
         void getUserData()
         {
-            Console.WriteLine("[{0:HH:mm:ss}] [USERDATA] Please wait while we download the user data!",DateTime.Now);
+            Console.WriteLine("[{0:HH:mm:ss}] [USERDATA] Please wait while we download the user data!", DateTime.Now);
             try
             {
                 var appcfg = new ConfigParser(appConfig);
@@ -167,6 +169,8 @@ namespace MythicalLauncher
                     l_banned = udata.Banned;
                     l_admin = udata.Admin;
                     l_role = udata.Role;
+                    a_email = email.Text;
+                    a_password = password.Text;
                     appcfg.SetValue("ACCOUNT", "email", email.Text);
                     appcfg.SetValue("ACCOUNT", "pass", password.Text);
                     appcfg.Save();
@@ -217,6 +221,19 @@ namespace MythicalLauncher
         private void lbldiscord_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(FrmLoading.appdiscord);
+        }
+
+        private void email_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void password_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                loginbutton.PerformClick();
+            }
         }
     }
 }

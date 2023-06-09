@@ -211,8 +211,9 @@
             this.password.SelectedText = "";
             this.password.ShadowDecoration.Parent = this.password;
             this.password.Size = new System.Drawing.Size(239, 36);
-            this.password.TabIndex = 15;
+            this.password.TabIndex = 2;
             this.password.UseSystemPasswordChar = true;
+            this.password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.password_KeyPress);
             // 
             // email
             // 
@@ -242,7 +243,8 @@
             this.email.SelectedText = "";
             this.email.ShadowDecoration.Parent = this.email;
             this.email.Size = new System.Drawing.Size(239, 36);
-            this.email.TabIndex = 14;
+            this.email.TabIndex = 1;
+            this.email.TextChanged += new System.EventHandler(this.email_TextChanged);
             // 
             // lblweb
             // 

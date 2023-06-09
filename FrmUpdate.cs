@@ -1,16 +1,10 @@
-﻿using Guna.UI2.WinForms.Suite;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using Salaros.Configuration;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MythicalLauncher
@@ -25,9 +19,10 @@ namespace MythicalLauncher
             InitializeComponent();
         }
 
-        private void ProgressChanged(object sneder, DownloadProgressChangedEventArgs e) { 
-          progressBar1.Value = e.ProgressPercentage;
-          label2.Text = "Downloading...   " + BytesToString(e.BytesReceived) + " / " + BytesToString(e.TotalBytesToReceive);
+        private void ProgressChanged(object sneder, DownloadProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+            label2.Text = "Downloading...   " + BytesToString(e.BytesReceived) + " / " + BytesToString(e.TotalBytesToReceive);
         }
         private void Completed(object sender, AsyncCompletedEventArgs e)
         {
@@ -37,19 +32,19 @@ namespace MythicalLauncher
             {
                 if (dr == DialogResult.Yes)
                 {
-                    string tempPath = Path.GetTempPath(); 
-                    string tempFilePath = Path.Combine(tempPath, "MythicalLauncher.exe"); 
+                    string tempPath = Path.GetTempPath();
+                    string tempFilePath = Path.Combine(tempPath, "MythicalLauncher.exe");
                     WebClient webClient = new WebClient();
                     webClient.DownloadFile(new Uri("https://github.com/MythicalLTD/MythicalLauncher/releases/latest/download/MythicalLauncher.exe"), tempFilePath);
 
                     string batchScriptPath = Path.Combine(Application.StartupPath, "update.bat");
                     File.WriteAllText(batchScriptPath, "@echo off\r\n" +
                                                     "timeout /t 2 >nul\r\n" +
-                                                    "taskkill /im MythicalLauncher.exe /f\r\n" + 
-                                                    "del \"" + appPath + "\"\r\n" + 
-                                                    "move /y \"" + tempFilePath + "\" \"" + appPath + "\"\r\n" + 
-                                                    "start \"\" \"" + appPath + "\"\r\n" + 
-                                                    "del \"%~f0\""); 
+                                                    "taskkill /im MythicalLauncher.exe /f\r\n" +
+                                                    "del \"" + appPath + "\"\r\n" +
+                                                    "move /y \"" + tempFilePath + "\" \"" + appPath + "\"\r\n" +
+                                                    "start \"\" \"" + appPath + "\"\r\n" +
+                                                    "del \"%~f0\"");
                     System.Diagnostics.Process.Start(batchScriptPath);
                     Application.Exit();
                 }
@@ -70,7 +65,7 @@ namespace MythicalLauncher
             WebClient webClient = new WebClient();
             webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
             webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
-            webClient.DownloadFileAsync(new Uri("https://github.com/MythicalLTD/MythicalLauncher/releases/latest/download/MythicalLauncher.exe"),appPath);
+            webClient.DownloadFileAsync(new Uri("https://github.com/MythicalLTD/MythicalLauncher/releases/latest/download/MythicalLauncher.exe"), appPath);
         }
 
         private static string BytesToString(long byteCount)
@@ -78,7 +73,7 @@ namespace MythicalLauncher
             string[] suf = { "B", "KB", "MB", "GB", "TB", "PB", "EB" };
             long bytes = Math.Abs(byteCount);
             int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
-            double num = Math.Round(bytes / Math.Pow(1024, place),1);
+            double num = Math.Round(bytes / Math.Pow(1024, place), 1);
             return (Math.Sign(bytes) * num).ToString() + suf[place];
         }
         private void DisplayImage()

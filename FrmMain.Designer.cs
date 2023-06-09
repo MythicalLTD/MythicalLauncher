@@ -38,7 +38,7 @@
             this.mcpicture = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbllaunchername = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblmin = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
@@ -59,6 +59,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SettingsPage = new System.Windows.Forms.TabPage();
+            this.cbFullscreen = new Guna.UI2.WinForms.Guna2CheckBox();
             this.lblbuilnumber = new System.Windows.Forms.Label();
             this.lblver = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.cbSkipHashCheck = new Guna.UI2.WinForms.Guna2CheckBox();
             this.cbSkipAssets = new Guna.UI2.WinForms.Guna2CheckBox();
             this.Pb_Progress = new Guna.UI2.WinForms.Guna2ProgressBar();
-            this.cbFullscreen = new Guna.UI2.WinForms.Guna2CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mcpicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -93,7 +93,7 @@
             this.panel1.Controls.Add(this.mcpicture);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lbllaunchername);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblmin);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -140,19 +140,19 @@
             this.lbllaunchername.TabIndex = 12;
             this.lbllaunchername.Text = "IgnitionLauncher | Main";
             // 
-            // label2
+            // lblmin
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(913, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(15, 20);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "-";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.lblmin.AutoSize = true;
+            this.lblmin.BackColor = System.Drawing.Color.Transparent;
+            this.lblmin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lblmin.ForeColor = System.Drawing.Color.White;
+            this.lblmin.Location = new System.Drawing.Point(919, 0);
+            this.lblmin.Name = "lblmin";
+            this.lblmin.Size = new System.Drawing.Size(22, 29);
+            this.lblmin.TabIndex = 11;
+            this.lblmin.Text = "-";
+            this.lblmin.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -562,10 +562,10 @@
             this.Misc.Location = new System.Drawing.Point(170, 0);
             this.Misc.Multiline = true;
             this.Misc.Name = "Misc";
-            this.Misc.Page = this.SettingsPage;
-            this.Misc.PageIndex = 1;
-            this.Misc.PageName = "SettingsPage";
-            this.Misc.PageTitle = "Settings";
+            this.Misc.Page = this.HomePage;
+            this.Misc.PageIndex = 0;
+            this.Misc.PageName = "HomePage";
+            this.Misc.PageTitle = "Home";
             this.Misc.SelectedIndex = 0;
             this.Misc.Size = new System.Drawing.Size(617, 394);
             this.Misc.TabIndex = 31;
@@ -616,6 +616,8 @@
             // 
             this.announcementDescriptionTextBox.Location = new System.Drawing.Point(164, 77);
             this.announcementDescriptionTextBox.Name = "announcementDescriptionTextBox";
+            this.announcementDescriptionTextBox.ReadOnly = true;
+            this.announcementDescriptionTextBox.ShortcutsEnabled = false;
             this.announcementDescriptionTextBox.Size = new System.Drawing.Size(417, 275);
             this.announcementDescriptionTextBox.TabIndex = 13;
             this.announcementDescriptionTextBox.Text = "";
@@ -669,6 +671,26 @@
             this.SettingsPage.Size = new System.Drawing.Size(609, 366);
             this.SettingsPage.TabIndex = 0;
             this.SettingsPage.Text = "Settings";
+            // 
+            // cbFullscreen
+            // 
+            this.cbFullscreen.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbFullscreen.CheckedState.BorderRadius = 2;
+            this.cbFullscreen.CheckedState.BorderThickness = 0;
+            this.cbFullscreen.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbFullscreen.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.cbFullscreen.ForeColor = System.Drawing.Color.White;
+            this.cbFullscreen.Location = new System.Drawing.Point(18, 260);
+            this.cbFullscreen.Name = "cbFullscreen";
+            this.cbFullscreen.Size = new System.Drawing.Size(428, 31);
+            this.cbFullscreen.TabIndex = 47;
+            this.cbFullscreen.Text = "Start minecraft in fullscreen";
+            this.cbFullscreen.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbFullscreen.UncheckedState.BorderRadius = 2;
+            this.cbFullscreen.UncheckedState.BorderThickness = 0;
+            this.cbFullscreen.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbFullscreen.UseVisualStyleBackColor = true;
+            this.cbFullscreen.CheckedChanged += new System.EventHandler(this.cbFullscreen_CheckedChanged);
             // 
             // lblbuilnumber
             // 
@@ -943,26 +965,6 @@
             this.Pb_Progress.TabIndex = 28;
             this.Pb_Progress.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             // 
-            // cbFullscreen
-            // 
-            this.cbFullscreen.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbFullscreen.CheckedState.BorderRadius = 2;
-            this.cbFullscreen.CheckedState.BorderThickness = 0;
-            this.cbFullscreen.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbFullscreen.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.cbFullscreen.ForeColor = System.Drawing.Color.White;
-            this.cbFullscreen.Location = new System.Drawing.Point(18, 260);
-            this.cbFullscreen.Name = "cbFullscreen";
-            this.cbFullscreen.Size = new System.Drawing.Size(428, 31);
-            this.cbFullscreen.TabIndex = 47;
-            this.cbFullscreen.Text = "Start minecraft in fullscreen";
-            this.cbFullscreen.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.cbFullscreen.UncheckedState.BorderRadius = 2;
-            this.cbFullscreen.UncheckedState.BorderThickness = 0;
-            this.cbFullscreen.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.cbFullscreen.UseVisualStyleBackColor = true;
-            this.cbFullscreen.CheckedChanged += new System.EventHandler(this.cbFullscreen_CheckedChanged);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1003,7 +1005,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbllaunchername;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblmin;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;

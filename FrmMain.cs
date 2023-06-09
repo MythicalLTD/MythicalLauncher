@@ -50,6 +50,8 @@ namespace MythicalLauncher
             if (Xms == "" || Xmx == "")
             {
                 Alert("Please set your Desired Ram Settings!", FrmAlert.enmType.Info);
+                txtXms.Text = "2048";
+                TxtXmx.Text = "2048";
             }
             else
             {
@@ -270,8 +272,8 @@ namespace MythicalLauncher
             }
 
             var cfg = new ConfigParser(appConfig);
-            var Xms = cfg.GetValue("RAM", "Xms");
-            var Xmx = cfg.GetValue("RAM", "Xmx");
+            string Xms = cfg.GetValue("RAM", "Xms");
+            string Xmx = cfg.GetValue("RAM", "Xmx");
             if (Xms == "" || Xmx == "")
             {
                 Alert("Please set your Desired Ram Settings!", FrmAlert.enmType.Info);
@@ -304,7 +306,7 @@ namespace MythicalLauncher
 
                 if (rbParallelDownload.Checked)
                 {
-                    System.Net.ServicePointManager.DefaultConnectionLimit = 256;
+                    ServicePointManager.DefaultConnectionLimit = 256;
                     launcher.FileDownloader = new AsyncParallelDownloader();
                 }
                 else
@@ -344,6 +346,8 @@ namespace MythicalLauncher
             finally
             {
                 this.WindowState = FormWindowState.Minimized;
+                Pb_Progress.Value = 0;
+                Lv_Status.Text = "In game";
             }
 
         }
@@ -360,6 +364,11 @@ namespace MythicalLauncher
             process.BeginOutputReadLine();
         }
 
+        private void StopProcess(Process process)
+        {
+            process.Close();
+            process.Kill();
+        }
 
         private void btnSetLastVersion_Click(object sender, EventArgs e)
         {

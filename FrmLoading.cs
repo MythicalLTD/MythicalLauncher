@@ -32,7 +32,6 @@ namespace MythicalLauncher
         public static string appweb;
         public static string appstore;
         public static string appvote;
-
         /* DISCORD RPC STRINGS */
         public static string appdiscord;
         private static string enable_discordrpc;
@@ -137,7 +136,6 @@ namespace MythicalLauncher
                     auto_joiner_ip = data.auto_joiner_ip;
                     auto_joiner_port = data.auto_joiner_port;
                     lblver.Text = "V" + version;
-
                     loader.Color = ColorTranslator.FromHtml(appcolour);
                     Console.WriteLine("[{0:HH:mm:ss}] [SETTINGS] Done", DateTime.Now);
                 }

@@ -4,3 +4,4 @@ obj/
 .obj
 build.bat
 open.bat
+bin/
